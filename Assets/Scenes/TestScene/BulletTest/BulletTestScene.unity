@@ -621,7 +621,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 641677046}
         m_TargetAssemblyTypeName: Player_BulletTest, Assembly-CSharp
-        m_MethodName: Absorb
+        m_MethodName: OnAbsorb
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
