@@ -6,10 +6,10 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "New Bullet Pulisher", menuName = "Scriptable Objects/Events/Bullet Publisher")]
 public class BulletPublisherSO : ScriptableObject
 {
-    public UnityAction<Bullet, string> OnEventRaised;
+    public UnityAction<Bullet, string, int> OnEventRaised;
 
-    public void RaiseEvent(Bullet obj, string tag)
+    public void RaiseEvent(Bullet obj, string tag, int name)
     {
-        OnEventRaised?.Invoke(obj, tag);
+        OnEventRaised?.Invoke(obj, tag, name);
     }
 }

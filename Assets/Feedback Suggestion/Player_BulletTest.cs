@@ -28,17 +28,17 @@ public class Player_BulletTest : BaseCharacter_BulletTest
     }
     public float offset = 1f; // shoot offset
 
-    public void OnGetDamaged(float damage, string tag, string name)
+    public void OnGetDamaged(float damage, string tag, int name)
     {
-        if (name == this.gameObject.name && tag != this.gameObject.tag)
+        if (name == this.gameObject.GetInstanceID() && tag != this.gameObject.tag)
         {
             TakeDmg(damage);
         }
     }
 
-    public void OnAbsorb(Bullet bullet, string tag)
+    public void OnAbsorb(Bullet bullet, string tag, int name)
     {
-        if (tag == this.gameObject.tag)
+        if (name == this.gameObject.GetInstanceID() && tag == this.gameObject.tag)
         {
             Absorb(bullet);
         }

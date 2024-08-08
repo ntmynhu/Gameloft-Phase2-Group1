@@ -105,7 +105,11 @@ public class Bullet : MonoBehaviour
 
 
                 //bullet deal damage
-                takeDamageSO.RaiseEvent(damage, this.gameObject.tag, collision.gameObject.name);
+                /*if(collision.gameObject.TryGetComponent<BaseCharacter_BulletTest(out BaseCharacter_BulletTest char))
+                {
+                    char.TakeDmg(damage);
+                }  */  
+                takeDamageSO.RaiseEvent(damage, this.gameObject.tag, collision.gameObject.GetInstanceID());
             } 
         }
 
@@ -113,7 +117,11 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == gameObject.tag)
         {
             //absorbed if that object is a player and bullet is player's bullet
-            absorbBulletSO.RaiseEvent(this, this.gameObject.tag);
+            /*if(collision.gameObject.TryGetComponent<Player_BulletTest(out Player_BulletTest char))
+                {
+                    char.Absorb(this);
+                }  */
+            absorbBulletSO.RaiseEvent(this, this.gameObject.tag, collision.gameObject.GetInstanceID());
         }    
            
     }

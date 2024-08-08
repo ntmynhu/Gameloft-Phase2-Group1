@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class BulletEventListener : MonoBehaviour
 {
-    [SerializeField] private UnityEvent<Bullet, string> EventResponse;
+    [SerializeField] private UnityEvent<Bullet, string, int> EventResponse;
     [SerializeField] private BulletPublisherSO publisher;
 
     private void OnEnable()
@@ -18,8 +18,8 @@ public class BulletEventListener : MonoBehaviour
         publisher.OnEventRaised -= Respond;
     }
 
-    private void Respond(Bullet obj, string tag)
+    private void Respond(Bullet obj, string tag,int name)
     {
-        EventResponse?.Invoke(obj, tag);
+        EventResponse?.Invoke(obj, tag, name);
     }
 }
