@@ -103,7 +103,6 @@ public class Bullet : MonoBehaviour
                 ReflectDirection(collision.GetContact(0).normal);
                 DecreaseSpeedOnCollision();
 
-
                 //bullet deal damage
                 takeDamageSO.RaiseEvent(damage, this.gameObject.tag, collision.gameObject.name);
             } 
