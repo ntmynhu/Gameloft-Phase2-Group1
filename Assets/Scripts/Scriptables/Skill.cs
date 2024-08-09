@@ -8,6 +8,9 @@ public abstract class Skill : ScriptableObject
     public new string name;
     public int id;
     public InputActionReference action;
+    public InputActionReference startAction;
+    public InputActionReference endAction;
+
     public bool isCasted = false;
     public int dmg;
     public float castTime;

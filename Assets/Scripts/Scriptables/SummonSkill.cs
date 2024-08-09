@@ -12,6 +12,7 @@ public class SummonSkill : Skill
     //public float maxCountdownTime = 3f;
     private List<Vector3> linePositions = new List<Vector3>();
 
+    
     private void AddLinePosition(Vector3 start, Vector3 end)
     {
         linePositions.Add(start);
@@ -34,9 +35,9 @@ public class SummonSkill : Skill
                     }
                 }
             }
-            isCasted = false;
+            //isCasted = false;
         }
-        if (countdownTime <= 0)
+        /*if (countdownTime <= 0)
         {
             isCasted = true;
             this.SetActive();
@@ -45,9 +46,8 @@ public class SummonSkill : Skill
         else
         {
             countdownTime -= Time.deltaTime;
-        }
+        }*/
     }
-
     public override void UpdateAimSprite(AimRenderer aimRenderer)
     {
         aimRenderer.AimLineRenderer.enabled = true;
@@ -58,6 +58,10 @@ public class SummonSkill : Skill
             aimRenderer.AimLineRenderer.SetPosition(i, linePositions[i]);
         }
     }
+
+
+    [SerializeField] private TakeDamagePublisherSO takeDamageSO;
+    [SerializeField] private GameObjectPublisherSO bulletPublisherSO;
     public override void Activate(GameObject Caster)
     {
 
@@ -72,7 +76,7 @@ public class SummonSkill : Skill
         {
             if (bullet != null)
             {
-                if (bullet.IsCollectable)
+                if (bullet.IsCollectable && bullet.tag == Caster.tag)
                 {
                     // Perform the Linecast
                     RaycastHit2D[] hit = Physics2D.LinecastAll(bullet.transform.position, Caster.transform.position);
@@ -85,31 +89,35 @@ public class SummonSkill : Skill
                         {
                             Debug.Log("Hit: " + hit[i].collider.name);
                             //Change enemy's health
-                            if (hit[i].collider.TryGetComponent<Enemy_BulletTest>(out Enemy_BulletTest enemy))
+                            if (!(hit[i].collider.gameObject.tag == Caster.tag))
                             {
-                                enemy.TakeDmg(dmg);
+                                takeDamageSO.RaiseEvent(dmg, Caster.tag, hit[i].collider.gameObject.GetInstanceID());
                             }
                         }
                     }
+                    
                     Collider2D bulletCollide = bullet.GetComponent<Collider2D>();
                     bulletCollide.enabled = false; //Turn off the collision of the bullet, as we use raycast instead 
 
                     //Move the bullet back to Caster (doTween)
                     bullet.transform.DOMove(Caster.transform.position, activeDuration)
                         .SetEase(Ease.Linear) // Set movement to linear (no acceleration/deceleration)
-                        .OnComplete(() => OnMovementComplete(bullet));
+                        .OnComplete(() => OnMovementComplete(bullet, Caster));
 
                     //main.MoveBulletToPlayer(bullet, main.gameObject.transform.position, activeDuration);
-                    main.Heal(1);
+                    
+                    //main.MoveBulletToPlayer(bullet, main.gameObject.transform.position, activeDuration);
                 }
 
             }
         }
     }
 
-    private void OnMovementComplete(Bullet bullet)
-    {
-        bullet.gameObject.SetActive(false);
+    private void OnMovementComplete(Bullet bullet, GameObject Caster)
+    {   if (bullet.gameObject.activeSelf)
+        {
+            bulletPublisherSO.RaiseEvent(bullet.gameObject, Caster.tag, Caster.gameObject.GetInstanceID());
+        }
         linePositions.Clear();
         SetDisabled();
     }
