@@ -20,13 +20,31 @@
                     "id": "d1dd0142-d8b6-4211-9af7-167aac852743",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=3)",
                     "initialStateCheck": false
                 },
                 {
                     "name": "SlimeThachSkill",
                     "type": "Button",
                     "id": "de45a89c-29be-44d1-93ca-e611498b13db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NormalSkill",
+                    "type": "Button",
+                    "id": "b693e93d-a267-4ead-b216-8e16feb36343",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SlimeThachSkillActivate",
+                    "type": "Button",
+                    "id": "01ae8d9e-ca6c-4cc6-82dc-b926813c968e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -108,6 +126,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SlimeThachSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d64faedd-46b5-4028-b35d-b1c3b3a343c0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NormalSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f8fe962-f9b7-47ee-9b29-6c99537af7c8",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SlimeThachSkillActivate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

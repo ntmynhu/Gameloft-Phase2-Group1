@@ -42,13 +42,31 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""d1dd0142-d8b6-4211-9af7-167aac852743"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=3)"",
                     ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""SlimeThachSkill"",
                     ""type"": ""Button"",
                     ""id"": ""de45a89c-29be-44d1-93ca-e611498b13db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NormalSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""b693e93d-a267-4ead-b216-8e16feb36343"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SlimeThachSkillActivate"",
+                    ""type"": ""Button"",
+                    ""id"": ""01ae8d9e-ca6c-4cc6-82dc-b926813c968e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -132,6 +150,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""SlimeThachSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d64faedd-46b5-4028-b35d-b1c3b3a343c0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f8fe962-f9b7-47ee-9b29-6c99537af7c8"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlimeThachSkillActivate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +183,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Land_Walk = m_Land.FindAction("Walk", throwIfNotFound: true);
         m_Land_SummonSkill = m_Land.FindAction("SummonSkill", throwIfNotFound: true);
         m_Land_SlimeThachSkill = m_Land.FindAction("SlimeThachSkill", throwIfNotFound: true);
+        m_Land_NormalSkill = m_Land.FindAction("NormalSkill", throwIfNotFound: true);
+        m_Land_SlimeThachSkillActivate = m_Land.FindAction("SlimeThachSkillActivate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +249,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Land_Walk;
     private readonly InputAction m_Land_SummonSkill;
     private readonly InputAction m_Land_SlimeThachSkill;
+    private readonly InputAction m_Land_NormalSkill;
+    private readonly InputAction m_Land_SlimeThachSkillActivate;
     public struct LandActions
     {
         private @PlayerControls m_Wrapper;
@@ -214,6 +258,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Walk => m_Wrapper.m_Land_Walk;
         public InputAction @SummonSkill => m_Wrapper.m_Land_SummonSkill;
         public InputAction @SlimeThachSkill => m_Wrapper.m_Land_SlimeThachSkill;
+        public InputAction @NormalSkill => m_Wrapper.m_Land_NormalSkill;
+        public InputAction @SlimeThachSkillActivate => m_Wrapper.m_Land_SlimeThachSkillActivate;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +278,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SlimeThachSkill.started += instance.OnSlimeThachSkill;
             @SlimeThachSkill.performed += instance.OnSlimeThachSkill;
             @SlimeThachSkill.canceled += instance.OnSlimeThachSkill;
+            @NormalSkill.started += instance.OnNormalSkill;
+            @NormalSkill.performed += instance.OnNormalSkill;
+            @NormalSkill.canceled += instance.OnNormalSkill;
+            @SlimeThachSkillActivate.started += instance.OnSlimeThachSkillActivate;
+            @SlimeThachSkillActivate.performed += instance.OnSlimeThachSkillActivate;
+            @SlimeThachSkillActivate.canceled += instance.OnSlimeThachSkillActivate;
         }
 
         private void UnregisterCallbacks(ILandActions instance)
@@ -245,6 +297,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SlimeThachSkill.started -= instance.OnSlimeThachSkill;
             @SlimeThachSkill.performed -= instance.OnSlimeThachSkill;
             @SlimeThachSkill.canceled -= instance.OnSlimeThachSkill;
+            @NormalSkill.started -= instance.OnNormalSkill;
+            @NormalSkill.performed -= instance.OnNormalSkill;
+            @NormalSkill.canceled -= instance.OnNormalSkill;
+            @SlimeThachSkillActivate.started -= instance.OnSlimeThachSkillActivate;
+            @SlimeThachSkillActivate.performed -= instance.OnSlimeThachSkillActivate;
+            @SlimeThachSkillActivate.canceled -= instance.OnSlimeThachSkillActivate;
         }
 
         public void RemoveCallbacks(ILandActions instance)
@@ -267,5 +325,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnWalk(InputAction.CallbackContext context);
         void OnSummonSkill(InputAction.CallbackContext context);
         void OnSlimeThachSkill(InputAction.CallbackContext context);
+        void OnNormalSkill(InputAction.CallbackContext context);
+        void OnSlimeThachSkillActivate(InputAction.CallbackContext context);
     }
 }
