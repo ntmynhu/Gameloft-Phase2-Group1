@@ -20,7 +20,7 @@ public class SummonSkill : Skill
     }
     public override void Cast(GameObject Caster)
     {
-        if (state == SkillState.ready)
+        /*if (state == SkillState.ready)
         {
             countdownTime = castTime;
             Bullet[] bullets = FindObjectsOfType<Bullet>();
@@ -37,7 +37,7 @@ public class SummonSkill : Skill
             }
             //isCasted = false;
         }
-        /*if (countdownTime <= 0)
+        if (countdownTime <= 0)
         {
             isCasted = true;
             this.SetActive();
@@ -47,6 +47,19 @@ public class SummonSkill : Skill
         {
             countdownTime -= Time.deltaTime;
         }*/
+        linePositions.Clear();
+        Bullet[] bullets = FindObjectsOfType<Bullet>();
+        foreach (Bullet bullet in bullets)
+        {
+            if (bullet != null)
+            {
+                if (bullet.IsCollectable)
+                {
+                    // Visualize the line in the Scene view
+                    AddLinePosition(bullet.transform.position, Caster.transform.position);
+                }
+            }
+        }
     }
     public override void UpdateAimSprite(AimRenderer aimRenderer)
     {
@@ -78,11 +91,13 @@ public class SummonSkill : Skill
             {
                 if (bullet.IsCollectable && bullet.tag == Caster.tag)
                 {
+                    Collider2D bulletCollide = bullet.GetComponent<Collider2D>();
+
                     // Perform the Linecast
                     RaycastHit2D[] hit = Physics2D.LinecastAll(bullet.transform.position, Caster.transform.position);
 
                     // Check if the line hit something
-                    if (hit.Length > 0)
+                    if (hit.Length > 0 && bulletCollide.enabled != false)
                     {
                         Debug.Log("Hit objects: " + hit.Length);
                         for (int i = 0; i < hit.Length; i++)
@@ -91,12 +106,13 @@ public class SummonSkill : Skill
                             //Change enemy's health
                             if (!(hit[i].collider.gameObject.tag == Caster.tag))
                             {
+                                // Visualize the line in the Scene view
+                                Debug.Log("Deal Damage On: " + hit[i].collider.name);
                                 takeDamageSO.RaiseEvent(dmg, Caster.tag, hit[i].collider.gameObject.GetInstanceID());
                             }
                         }
                     }
                     
-                    Collider2D bulletCollide = bullet.GetComponent<Collider2D>();
                     bulletCollide.enabled = false; //Turn off the collision of the bullet, as we use raycast instead 
 
                     //Move the bullet back to Caster (doTween)
