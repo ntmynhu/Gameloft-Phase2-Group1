@@ -96,7 +96,7 @@ public class SummonSkill : Skill
                     // Perform the Linecast
                     RaycastHit2D[] hit = Physics2D.LinecastAll(bullet.transform.position, Caster.transform.position);
 
-                    // Check if the line hit something
+                    // Check if the line hit something in the first loop
                     if (hit.Length > 0 && bulletCollide.enabled != false)
                     {
                         Debug.Log("Hit objects: " + hit.Length);
