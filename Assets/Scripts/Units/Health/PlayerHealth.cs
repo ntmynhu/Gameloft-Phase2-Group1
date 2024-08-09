@@ -41,7 +41,7 @@ public class PlayerHealth : BaseHealth
         }
         else
         {
-            ChangeState(SlimeState.Good);
+            ChangeState(SlimeState.Bad);
         }
     }
 
@@ -51,14 +51,19 @@ public class PlayerHealth : BaseHealth
         if (state == SlimeState.Good)
         {
             // process good state changes
+            //PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_1);
+            PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_2);
         }
         else if (state == SlimeState.Normal)
         {
             // process normal state changes
+            //PlayerSkillManager.Instance.ReadySkill(PlayerSkillManager.Instance.skill_1);
         }
         else
         {
             // process bad state changes
+            //PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_1);
+            PlayerSkillManager.Instance.ReadySkill(PlayerSkillManager.Instance.skill_2);
         }
     }
 }

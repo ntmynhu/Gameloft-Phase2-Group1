@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 996313502}
   - component: {fileID: 996313501}
   - component: {fileID: 996313504}
+  - component: {fileID: 996313505}
   m_Layer: 0
   m_Name: Player
   m_TagString: Allie
@@ -846,6 +847,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   publisher: {fileID: 11400000, guid: b18c8165326a29d46812e661094a3f73, type: 2}
+--- !u!114 &996313505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996313495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914a4c2714020db43b66057f9e0d53b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill_1: {fileID: 0}
+  skill_2: {fileID: 11400000, guid: 854717128fa97ed46a0b55023232aa95, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
