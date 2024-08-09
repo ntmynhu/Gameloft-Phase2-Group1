@@ -53,4 +53,13 @@ public class BulletManager : MonoBehaviour
         bullet.tag = tag;
         return bullet;
     }    
+    
+    public void GetBulletToTransform(Vector3 transform, float radius, string tag, int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            Bullet bullet = GetBullet(tag);
+            bullet.transform.position = transform + new Vector3(Random.Range(0, radius), Random.Range(0, radius), 0);
+        }
+    }    
 }
