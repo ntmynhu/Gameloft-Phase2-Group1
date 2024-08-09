@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9538781906305d47b55b78e32f98230, type: 3}
   m_Name: SummonSkill
   m_EditorClassIdentifier: 
-  name: 
+  name: Summon Skill
   id: 0
-  action: {fileID: 0}
+  action: {fileID: -2273392471115677166, guid: 059995ee8018e7f4a95c590f3a51de89, type: 3}
   isCasted: 0
-  dmg: 0
-  castTime: 0
-  state: 1
-  activeDuration: 0
-  countdownTime: 0
+  dmg: 1
+  castTime: 3
+  state: 2
+  activeDuration: 0.5
+  countdownTime: 2.9594688
