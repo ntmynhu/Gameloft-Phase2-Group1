@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseHealth : MonoBehaviour
 {
-    protected float currentHealth;
+    [SerializeField] protected float currentHealth;
     [SerializeField] protected float maxHealth;
     [SerializeField] protected VoidPublisherSO onDie;
     public virtual void TakeDmg(float dmg)
@@ -12,9 +12,14 @@ public class BaseHealth : MonoBehaviour
         currentHealth -= dmg;
     }
 
-    public virtual void OnGetDamaged(float damage, string tag, string name)
+    public virtual void Sacrifice(float remaining)
     {
-        if (name == this.gameObject.name && tag != this.gameObject.tag)
+        currentHealth = remaining;
+    }
+
+    public virtual void OnGetDamaged(float damage, string tag, int id)
+    {
+        if (id == this.gameObject.GetInstanceID() && tag != this.gameObject.tag)
         {
             TakeDmg(damage);
         }

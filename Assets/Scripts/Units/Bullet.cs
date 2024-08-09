@@ -67,6 +67,7 @@ public class Bullet : MonoBehaviour
     private void OnDisable()
     {
         isCollectable = false;
+        col.enabled = true;
         int layerIndex = LayerMask.NameToLayer("Bullet");
         this.gameObject.layer = layerIndex;
     }
@@ -91,7 +92,7 @@ public class Bullet : MonoBehaviour
     }
 
     [SerializeField] private TakeDamagePublisherSO takeDamageSO;
-    [SerializeField] private BulletPublisherSO absorbBulletSO;
+    [SerializeField] private GameObjectPublisherSO absorbBulletSO;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.gameObject.name);
@@ -120,7 +121,7 @@ public class Bullet : MonoBehaviour
                 {
                     char.Absorb(this);
                 }  */
-            absorbBulletSO.RaiseEvent(this, this.gameObject.tag, collision.gameObject.GetInstanceID());
+            absorbBulletSO.RaiseEvent(this.gameObject, this.gameObject.tag, collision.gameObject.GetInstanceID());
         }    
            
     }
