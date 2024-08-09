@@ -597,12 +597,12 @@ GameObject:
   m_Component:
   - component: {fileID: 996313497}
   - component: {fileID: 996313496}
+  - component: {fileID: 996313498}
+  - component: {fileID: 996313503}
   - component: {fileID: 996313500}
   - component: {fileID: 996313499}
-  - component: {fileID: 996313498}
   - component: {fileID: 996313502}
   - component: {fileID: 996313501}
-  - component: {fileID: 996313503}
   - component: {fileID: 996313504}
   m_Layer: 0
   m_Name: Player
@@ -780,7 +780,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  onDie: {fileID: 0}
+  onDie: {fileID: 11400000, guid: d62c59cc210dd084fa7b86fd0bdca759, type: 2}
+  goodThreshold: 0
+  normalThreshold: 0
 --- !u!58 &996313503
 CircleCollider2D:
   m_ObjectHideFlags: 0
