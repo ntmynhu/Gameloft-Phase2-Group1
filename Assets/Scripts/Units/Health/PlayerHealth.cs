@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerHealth : BaseHealth
 {
+    public enum SlimeState { Good, Normal, Bad}
+    private SlimeState currentState = SlimeState.Good;
+    [SerializeField] private float goodThreshold; // Good State: goodThreshold -> maxHealth
+    [SerializeField] private float normalThreshold; // Normal State: normalThresHold -> goodThreshold - 1
+    // Bad State: 1 -> normalThreshold - 1
+
     private void Awake()
     {
         this.gameObject.tag = "Allie";
@@ -21,6 +27,40 @@ public class PlayerHealth : BaseHealth
         if (tag == this.gameObject.tag)
         {
             Absorb(bullet);
+        }
+    }
+
+    public override void TakeDmg(float dmg)
+    {
+        base.TakeDmg(dmg);
+        if (currentHealth >= goodThreshold)
+        {
+            ChangeState(SlimeState.Good);
+        }
+        else if (currentHealth >= normalThreshold)
+        {
+            ChangeState(SlimeState.Normal);
+        }
+        else
+        {
+            ChangeState(SlimeState.Good);
+        }
+    }
+
+    public void ChangeState(SlimeState state)
+    {
+        if (currentState == state) return;
+        if (state == SlimeState.Good)
+        {
+            // process good state changes
+        }
+        else if (state == SlimeState.Normal)
+        {
+            // process normal state changes
+        }
+        else
+        {
+            // process bad state changes
         }
     }
 }
