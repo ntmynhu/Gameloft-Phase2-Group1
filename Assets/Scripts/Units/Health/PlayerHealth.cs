@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : BaseHealth
 {
-    public float offset = 1f; // shoot offset
+    public enum SlimeState { Good, Normal, Bad}
+    private SlimeState currentState = SlimeState.Good;
+    [SerializeField] private float goodThreshold; // Good State: goodThreshold -> maxHealth
+    [SerializeField] private float normalThreshold; // Normal State: normalThresHold -> goodThreshold - 1
+    // Bad State: 1 -> normalThreshold - 1
 
     private void Awake()
     {
@@ -13,7 +15,8 @@ public class PlayerHealth : BaseHealth
 
     public void Absorb(Bullet bullet)
     {
-        bullet.gameObject.SetActive(false);
+        BulletManager.Instance.bulletPool.Release(bullet);
+        //bullet.gameObject.SetActive(false);
         Heal(1);
     }
 
@@ -24,21 +27,38 @@ public class PlayerHealth : BaseHealth
             Absorb(bullet);
         }
     }
-    private void Update()
+
+    public override void TakeDmg(float dmg)
     {
-        //pseudo
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        base.TakeDmg(dmg);
+        if (currentHealth >= goodThreshold)
         {
-            Bullet bullet = BulletManager.Instance.GetBullet(this.gameObject.tag);
-            Vector2 direction = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
-            // Apply the offset along the direction
-            Vector2 offsetPosition = (Vector2)this.transform.position + direction.normalized * offset;
+            ChangeState(SlimeState.Good);
+        }
+        else if (currentHealth >= normalThreshold)
+        {
+            ChangeState(SlimeState.Normal);
+        }
+        else
+        {
+            ChangeState(SlimeState.Good);
+        }
+    }
 
-            // Set the bullet's position
-            bullet.transform.position = offsetPosition;
-            bullet.Shoot(direction);
-
-            Debug.Log("Shooting");
+    public void ChangeState(SlimeState state)
+    {
+        if (currentState == state) return;
+        if (state == SlimeState.Good)
+        {
+            // process good state changes
+        }
+        else if (state == SlimeState.Normal)
+        {
+            // process normal state changes
+        }
+        else
+        {
+            // process bad state changes
         }
     }
 }
