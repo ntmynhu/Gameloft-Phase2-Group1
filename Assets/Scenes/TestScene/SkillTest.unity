@@ -1461,14 +1461,6 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1769491948370498808, guid: 4de36da8def5f29438aab13eff593ca7, type: 3}
-      propertyPath: m_SortingLayer
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1769491948370498808, guid: 4de36da8def5f29438aab13eff593ca7, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1272303859
-      objectReference: {fileID: 0}
     - target: {fileID: 1890282750462492040, guid: 4de36da8def5f29438aab13eff593ca7, type: 3}
       propertyPath: m_BodyType
       value: 2
