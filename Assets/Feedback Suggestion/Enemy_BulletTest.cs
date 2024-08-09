@@ -16,9 +16,9 @@ public class Enemy_BulletTest : BaseCharacter_BulletTest
         this.gameObject.layer = layerIndex;
     }
 
-    public void OnGetDamaged(float damage, string tag, string name)
+    public void OnGetDamaged(float damage, string tag, int name)
     {
-        if (name == this.gameObject.name && tag != this.gameObject.tag)
+        if (name == this.gameObject.GetInstanceID() && tag != this.gameObject.tag)
         {
             TakeDmg(damage);
         }
