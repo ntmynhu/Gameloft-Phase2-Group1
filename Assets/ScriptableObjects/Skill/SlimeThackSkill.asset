@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4829879e8d79aad4b95c1d5fb29cd5af, type: 3}
+  m_Name: SlimeThackSkill
+  m_EditorClassIdentifier: 
+  name: Slime Thach
+  id: 0
+  action: {fileID: -2686313907314790557, guid: 059995ee8018e7f4a95c590f3a51de89, type: 3}
+  isCasted: 1
+  dmg: 2
+  castTime: 0
+  state: 1
+  radius: 0.5
+  radiusMultipler: 0.5
+  aimPos: {x: 6.0219083, y: -0.56524634, z: 0}
+  aimSpeed: 0
+  skillAimSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  remainingHealth: 0
+  takeDamageSO: {fileID: 11400000, guid: ab7c196636d1e524fb1661040270b6cc, type: 2}
+  sacrificeHealthSO: {fileID: 11400000, guid: 2acda0e9eed680041abc2828aa2511a0, type: 2}

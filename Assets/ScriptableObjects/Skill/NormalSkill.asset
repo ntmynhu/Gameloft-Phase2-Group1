@@ -9,17 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9538781906305d47b55b78e32f98230, type: 3}
-  m_Name: SummonSkill
+  m_Script: {fileID: 11500000, guid: aa75ac36afcc5cb40a29647a3266a5c1, type: 3}
+  m_Name: NormalSkill
   m_EditorClassIdentifier: 
-  name: Summon Skill
-  id: 1
-  action: {fileID: -2273392471115677166, guid: 059995ee8018e7f4a95c590f3a51de89, type: 3}
-  isCasted: 1
+  name: Normal Skill
+  id: -1
+  action: {fileID: -7934009501086344513, guid: 059995ee8018e7f4a95c590f3a51de89, type: 3}
+  isCasted: 0
   dmg: 1
-  castTime: 3
-  state: 0
-  activeDuration: 0.2
-  countdownTime: 3
+  castTime: 0
+  state: 1
   takeDamageSO: {fileID: 11400000, guid: ab7c196636d1e524fb1661040270b6cc, type: 2}
-  bulletPublisherSO: {fileID: 11400000, guid: b18c8165326a29d46812e661094a3f73, type: 2}
