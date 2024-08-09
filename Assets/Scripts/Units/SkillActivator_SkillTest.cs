@@ -28,7 +28,6 @@ public class SkillActivator_SkillTest : MonoBehaviour
     {
         if (crnSkill != null)
         {
-            //Debug.Log("Activator" + crnSkill + crnSkill.GetState());
             switch (crnSkill.GetState())
             {
                 case Skill.SkillState.ready:
@@ -48,11 +47,9 @@ public class SkillActivator_SkillTest : MonoBehaviour
                         {
                             crnSkill.SetReady();
                             aimRenderer.DisableAll();
+                            return;
                         }
-                        else
-                        {
-                            crnSkill.SetActive();
-                        }
+                        else crnSkill.SetActive();
                     }
                     crnSkill.UpdateAimSprite(aimRenderer);
                     break;

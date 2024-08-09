@@ -60,10 +60,14 @@ public class SummonSkill : Skill
     }
     public override void Activate(GameObject Caster)
     {
+
+        Debug.Log("Summonskill Activate");
+
         Player_SkillTest main = Caster.GetComponent<Player_SkillTest>();
 
         //Find each bullet and try a Linecast
         Bullet[] bullets = FindObjectsOfType<Bullet>();
+        Debug.Log(bullets.Length);
         foreach (Bullet bullet in bullets)
         {
             if (bullet != null)
@@ -87,7 +91,8 @@ public class SummonSkill : Skill
                             }
                         }
                     }
-                    bullet.GetComponent<Collider2D>().isTrigger = false; //Turn of the collision of the bullet, as we use raycast instead 
+                    Collider2D bulletCollide = bullet.GetComponent<Collider2D>();
+                    bulletCollide.enabled = false; //Turn off the collision of the bullet, as we use raycast instead 
 
                     //Move the bullet back to Caster (doTween)
                     bullet.transform.DOMove(Caster.transform.position, activeDuration)
@@ -95,6 +100,7 @@ public class SummonSkill : Skill
                         .OnComplete(() => OnMovementComplete(bullet));
 
                     //main.MoveBulletToPlayer(bullet, main.gameObject.transform.position, activeDuration);
+                    main.Heal(1);
                 }
 
             }
@@ -103,7 +109,7 @@ public class SummonSkill : Skill
 
     private void OnMovementComplete(Bullet bullet)
     {
-        //bullet.gameObject.SetActive(false);
+        bullet.gameObject.SetActive(false);
         linePositions.Clear();
         SetDisabled();
     }
