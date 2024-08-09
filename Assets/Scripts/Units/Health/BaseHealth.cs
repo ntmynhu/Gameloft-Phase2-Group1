@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BaseHealth : MonoBehaviour
 {
-    public float currentHealth;
-    public float maxHealth;
+    protected float currentHealth;
+    [SerializeField] protected float maxHealth;
+    [SerializeField] protected VoidPublisherSO onDie;
     public virtual void TakeDmg(float dmg)
     {
         currentHealth -= dmg;
@@ -24,4 +25,9 @@ public class BaseHealth : MonoBehaviour
         currentHealth += hp;
     }
 
+    public void Die()
+    {
+        onDie.RaiseEvent();
+        // Destroy or disable player..
+    }
 }
