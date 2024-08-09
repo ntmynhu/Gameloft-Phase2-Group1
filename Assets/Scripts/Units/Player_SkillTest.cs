@@ -133,6 +133,6 @@ public class Player_SkillTest : MonoBehaviour
         }
 
         bullet.transform.position = targetPosition;
-        bullet.gameObject.SetActive(false);
+        //bullet.gameObject.SetActive(false);
     }
 }

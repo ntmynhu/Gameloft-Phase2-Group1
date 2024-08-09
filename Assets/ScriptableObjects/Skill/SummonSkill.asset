@@ -18,6 +18,6 @@ MonoBehaviour:
   isCasted: 0
   dmg: 1
   castTime: 3
-  state: 2
+  state: 1
   activeDuration: 0.5
-  countdownTime: 2.9594688
+  countdownTime: 0.6670507

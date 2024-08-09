@@ -29,43 +29,48 @@ public class SkillActivator_SkillTest : MonoBehaviour
         if (crnSkill != null)
         {
             // Check if the action is assigned and the action is triggered
-            if (crnSkill.action != null && crnSkill.action.action.triggered)
+            /*if (crnSkill.action != null && crnSkill.action.action.triggered)
             {
-                Debug.Log("Activator" + crnSkill + crnSkill.GetState());
-                switch (crnSkill.GetState())
-                {
-                    case Skill.SkillState.ready:
+                
+            }*/
+
+            Debug.Log("Activator" + crnSkill + crnSkill.GetState());
+            switch (crnSkill.GetState())
+            {
+                case Skill.SkillState.ready:
+                    if (crnSkill.action.action.ReadValue<float>() > 0)
+                    {
                         crnSkill.Cast(gameObject);
                         crnSkill.SetCasting();
-                        break;
+                    }
+                    break;
 
-                    case Skill.SkillState.casting:
-                        crnSkill.Cast(gameObject);
-                        // Check if the action was released
-                        if (!crnSkill.action.action.ReadValue<float>().Equals(1))
+                case Skill.SkillState.casting:
+                    crnSkill.Cast(gameObject);
+                    // Check if the action was released
+                    if (!crnSkill.action.action.ReadValue<float>().Equals(1))
+                    {
+                        if (!crnSkill.isCasted)
                         {
-                            if (!crnSkill.isCasted)
-                            {
-                                crnSkill.SetReady();
-                                aimRenderer.DisableAll();
-                            }
-                            else
-                            {
-                                crnSkill.SetActive();
-                            }
+                            crnSkill.SetReady();
+                            aimRenderer.DisableAll();
                         }
-                        crnSkill.UpdateAimSprite(aimRenderer);
-                        break;
+                        else
+                        {
+                            crnSkill.SetActive();
+                        }
+                    }
+                    crnSkill.UpdateAimSprite(aimRenderer);
+                    break;
 
-                    case Skill.SkillState.active:
-                        crnSkill.Activate(gameObject);
-                        crnSkill.UpdateAimSprite(aimRenderer);
-                        break;
+                case Skill.SkillState.active:
+                    crnSkill.Activate(gameObject);
+                    crnSkill.UpdateAimSprite(aimRenderer);
+                    break;
 
-                    case Skill.SkillState.disabled:
-                        aimRenderer.DisableAll();
-                        break;
-                }
+                case Skill.SkillState.disabled:
+                    aimRenderer.DisableAll();
+                    break;
             }
         }
     }
