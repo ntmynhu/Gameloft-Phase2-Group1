@@ -59,21 +59,21 @@ public class PlayerHealth : BaseHealth
         {
             // process good state changes
             //PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_1);
-            //skillManager.DisableSkill(skillManager.skill_1);
+            skillManager.DisableSkill(skillManager.skill_1);
             skillManager.DisableSkill(skillManager.skill_2);
         }
         else if (state == SlimeState.Normal)
         {
             // process normal state changes
             //PlayerSkillManager.Instance.ReadySkill(PlayerSkillManager.Instance.skill_1);
-            //skillManager.ReadySkill(skillManager.skill_1);
+            skillManager.ReadySkill(skillManager.skill_1);
         }
         else
         {
             // process bad state changes
             //PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_1);
             skillManager.ReadySkill(skillManager.skill_2);
-            //skillManager.DisableSkill(skillManager.skill_1);
+            skillManager.DisableSkill(skillManager.skill_1);
         }
     }
 }
