@@ -103,7 +103,6 @@ public class Bullet : MonoBehaviour
                 ReflectDirection(collision.GetContact(0).normal);
                 DecreaseSpeedOnCollision();
 
-
                 //bullet deal damage
                 /*if(collision.gameObject.TryGetComponent<BaseCharacter_BulletTest(out BaseCharacter_BulletTest char))
                 {
