@@ -1,17 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player_SkillTest : MonoBehaviour
 {
+    public SkillActivator_SkillTest activator;
+    //public Skill skill_1;
+    public Skill skill_2;
+    //public int Skill_1_Unlock = 6;
+    public int Skill_2_Unlock = 2;
+
     public float offset = 1f; // shoot offset
     public float maxHealth;
     public float currentHealth;
+
+    private PlayerInput playerInput;
 
     private void Awake()
     {
         this.gameObject.tag = "Allie";
         currentHealth = maxHealth;
+
+        playerInput = GetComponent<PlayerInput>();
+    }
+
+    private void OnSummonSkill()
+    {
+        Debug.Log("Summon");
+        activator.SetSkill(skill_2);
+        
     }
 
     private void Update()
@@ -39,11 +57,42 @@ public class Player_SkillTest : MonoBehaviour
     public void TakeDmg(float health)
     {
         currentHealth -= health;
+        CheckSkill();
     }
     public void Heal(float health)
     {
         currentHealth += health;
+        CheckSkill();
     }
+
+    private void CheckSkill()
+    {
+
+        /*if (currentHealth <= Skill_2_Unlock)
+        {
+            skill_1.SetDisabled();
+            skill_2.SetReady();
+        }
+        else if (currentHealth <= Skill_1_Unlock)
+        {
+            skill_1.SetReady();
+        }
+        else
+        {
+            skill_1.SetDisabled();
+            skill_2.SetDisabled();
+        }*/
+
+        if (currentHealth <= Skill_2_Unlock)
+        {
+            skill_2.SetReady();
+        }
+        else
+        {
+            skill_2.SetDisabled();
+        }
+    }
+
     public void Absorb(Bullet bullet)
     {
         bullet.gameObject.SetActive(false);

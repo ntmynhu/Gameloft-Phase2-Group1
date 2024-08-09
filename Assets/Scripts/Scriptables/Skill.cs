@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public abstract class Skill : ScriptableObject
 {
     public new string name;
     public int id;
+    public InputActionReference action;
     public bool isCasted = false;
     public int dmg;
     public float castTime;
