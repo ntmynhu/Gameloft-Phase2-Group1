@@ -28,17 +28,11 @@ public class SkillActivator_SkillTest : MonoBehaviour
     {
         if (crnSkill != null)
         {
-            // Check if the action is assigned and the action is triggered
-            /*if (crnSkill.action != null && crnSkill.action.action.triggered)
-            {
-                
-            }*/
-
-            Debug.Log("Activator" + crnSkill + crnSkill.GetState());
+            //Debug.Log("Activator" + crnSkill + crnSkill.GetState());
             switch (crnSkill.GetState())
             {
                 case Skill.SkillState.ready:
-                    if (crnSkill.action.action.ReadValue<float>() > 0)
+                    if (crnSkill.action.action.ReadValue<float>() > 0) //If the button is pressed
                     {
                         crnSkill.Cast(gameObject);
                         crnSkill.SetCasting();

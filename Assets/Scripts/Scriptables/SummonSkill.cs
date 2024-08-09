@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,11 +62,6 @@ public class SummonSkill : Skill
     {
         Player_SkillTest main = Caster.GetComponent<Player_SkillTest>();
 
-        if (Caster.GetComponent<Player_SkillTest>() != null)
-        {
-            main.TakeDmg(main.maxHealth - main.currentHealth);
-        }
-
         //Find each bullet and try a Linecast
         Bullet[] bullets = FindObjectsOfType<Bullet>();
         foreach (Bullet bullet in bullets)
@@ -93,12 +89,12 @@ public class SummonSkill : Skill
                     }
                     bullet.GetComponent<Collider2D>().isTrigger = false; //Turn of the collision of the bullet, as we use raycast instead 
 
-                    /*//Move the bullet back to Caster (doTween)
+                    //Move the bullet back to Caster (doTween)
                     bullet.transform.DOMove(Caster.transform.position, activeDuration)
                         .SetEase(Ease.Linear) // Set movement to linear (no acceleration/deceleration)
-                        .OnComplete(() => OnMovementComplete(bullet));*/
+                        .OnComplete(() => OnMovementComplete(bullet));
 
-                    main.MoveBulletToPlayer(bullet, main.gameObject.transform.position, activeDuration);
+                    //main.MoveBulletToPlayer(bullet, main.gameObject.transform.position, activeDuration);
                 }
 
             }
@@ -107,7 +103,7 @@ public class SummonSkill : Skill
 
     private void OnMovementComplete(Bullet bullet)
     {
-        bullet.gameObject.SetActive(false);
+        //bullet.gameObject.SetActive(false);
         linePositions.Clear();
         SetDisabled();
     }

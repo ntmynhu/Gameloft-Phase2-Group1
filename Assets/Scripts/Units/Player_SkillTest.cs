@@ -114,25 +114,4 @@ public class Player_SkillTest : MonoBehaviour
             Absorb(bullet);
         }
     }
-
-    public void MoveBulletToPlayer(Bullet bullet, Vector3 targetPosition, float duration)
-    {
-        StartCoroutine(MoveBullet(bullet, targetPosition, duration));
-    }
-
-    private IEnumerator MoveBullet(Bullet bullet, Vector3 targetPosition, float duration)
-    {
-        Vector3 startPosition = bullet.transform.position;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            bullet.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        bullet.transform.position = targetPosition;
-        //bullet.gameObject.SetActive(false);
-    }
 }
