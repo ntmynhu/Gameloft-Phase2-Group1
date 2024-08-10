@@ -779,6 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116930ebbb1f5914a81878f76f442e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
   maxHealth: 20
   onDie: {fileID: 11400000, guid: d62c59cc210dd084fa7b86fd0bdca759, type: 2}
   goodThreshold: 0

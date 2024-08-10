@@ -11,6 +11,7 @@ public class PlayerHealth : BaseHealth
     private void Awake()
     {
         this.gameObject.tag = "Allie";
+        skillManager = GetComponent<PlayerSkillManager>();
     }
 
     public void Absorb(Bullet bullet)
@@ -20,11 +21,11 @@ public class PlayerHealth : BaseHealth
         Heal(1);
     }
 
-    public void OnAbsorb(Bullet bullet, string tag)
+    public void OnAbsorb(GameObject bullet, string tag, int id)
     {
-        if (tag == this.gameObject.tag)
+        if (tag == this.gameObject.tag && id == gameObject.GetInstanceID())
         {
-            Absorb(bullet);
+            Absorb(bullet.GetComponent<Bullet>());
         }
     }
 
@@ -41,24 +42,38 @@ public class PlayerHealth : BaseHealth
         }
         else
         {
-            ChangeState(SlimeState.Good);
+            ChangeState(SlimeState.Bad);
         }
     }
 
+    public float GetHealth()
+    {
+        return currentHealth;
+    }
+
+    PlayerSkillManager skillManager;
     public void ChangeState(SlimeState state)
     {
         if (currentState == state) return;
         if (state == SlimeState.Good)
         {
             // process good state changes
+            //PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_1);
+            skillManager.DisableSkill(skillManager.skill_1);
+            skillManager.DisableSkill(skillManager.skill_2);
         }
         else if (state == SlimeState.Normal)
         {
             // process normal state changes
+            //PlayerSkillManager.Instance.ReadySkill(PlayerSkillManager.Instance.skill_1);
+            skillManager.ReadySkill(skillManager.skill_1);
         }
         else
         {
             // process bad state changes
+            //PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_1);
+            skillManager.ReadySkill(skillManager.skill_2);
+            skillManager.DisableSkill(skillManager.skill_1);
         }
     }
 }
