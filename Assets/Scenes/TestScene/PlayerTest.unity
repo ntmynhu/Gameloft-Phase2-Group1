@@ -767,6 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 1
+  accuracyRange: 9.1
 --- !u!114 &996313502
 MonoBehaviour:
   m_ObjectHideFlags: 0
