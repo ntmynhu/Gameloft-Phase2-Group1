@@ -80,7 +80,7 @@ public class SummonSkill : Skill
 
         Debug.Log("Summonskill Activate");
 
-        Player_SkillTest main = Caster.GetComponent<Player_SkillTest>();
+        //Player_SkillTest main = Caster.GetComponent<Player_SkillTest>();
 
         //Find each bullet and try a Linecast
         Bullet[] bullets = FindObjectsOfType<Bullet>();
