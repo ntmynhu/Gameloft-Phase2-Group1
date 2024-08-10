@@ -60,6 +60,7 @@ public class SummonSkill : Skill
                 }
             }
         }
+        Caster.GetComponent<PlayerMovement>().enabled = false;
     }
     public override void UpdateAimSprite(AimRenderer aimRenderer)
     {
@@ -75,12 +76,17 @@ public class SummonSkill : Skill
 
     [SerializeField] private TakeDamagePublisherSO takeDamageSO;
     [SerializeField] private GameObjectPublisherSO bulletPublisherSO;
+
+    public override void CancelCast(GameObject Caster)
+    {
+        Caster.GetComponent<PlayerMovement>().enabled = true;
+    }
     public override void Activate(GameObject Caster)
     {
 
         Debug.Log("Summonskill Activate");
 
-        Player_SkillTest main = Caster.GetComponent<Player_SkillTest>();
+        //Player_SkillTest main = Caster.GetComponent<Player_SkillTest>();
 
         //Find each bullet and try a Linecast
         Bullet[] bullets = FindObjectsOfType<Bullet>();
@@ -135,6 +141,7 @@ public class SummonSkill : Skill
             bulletPublisherSO.RaiseEvent(bullet.gameObject, Caster.tag, Caster.gameObject.GetInstanceID());
         }
         linePositions.Clear();
+        Caster.GetComponent<PlayerMovement>().enabled = true;
         SetDisabled();
     }
 }
