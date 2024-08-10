@@ -114,6 +114,7 @@ public class SkillActivator : MonoBehaviour
                     }
                     else if (activatorState == ActivatorState.canceled)
                     {
+                        crnSkill.CancelCast(gameObject);
                         crnSkill.SetReady();
                         aimRenderer.DisableAll();
                         UnSubscribeActionEvents(crnSkill);
