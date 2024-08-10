@@ -67,6 +67,7 @@ public class Bullet : MonoBehaviour
     private void OnDisable()
     {
         isCollectable = false;
+        col.enabled = true;
         int layerIndex = LayerMask.NameToLayer("Bullet");
         this.gameObject.layer = layerIndex;
     }
@@ -91,7 +92,7 @@ public class Bullet : MonoBehaviour
     }
 
     [SerializeField] private TakeDamagePublisherSO takeDamageSO;
-    [SerializeField] private BulletPublisherSO absorbBulletSO;
+    [SerializeField] private GameObjectPublisherSO absorbBulletSO;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.gameObject.name);
@@ -103,9 +104,12 @@ public class Bullet : MonoBehaviour
                 ReflectDirection(collision.GetContact(0).normal);
                 DecreaseSpeedOnCollision();
 
-
                 //bullet deal damage
-                takeDamageSO.RaiseEvent(damage, this.gameObject.tag, collision.gameObject.name);
+                /*if(collision.gameObject.TryGetComponent<BaseCharacter_BulletTest(out BaseCharacter_BulletTest char))
+                {
+                    char.TakeDmg(damage);
+                }  */  
+                takeDamageSO.RaiseEvent(damage, this.gameObject.tag, collision.gameObject.GetInstanceID());
             } 
         }
 
@@ -113,7 +117,11 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == gameObject.tag)
         {
             //absorbed if that object is a player and bullet is player's bullet
-            absorbBulletSO.RaiseEvent(this, this.gameObject.tag);
+            /*if(collision.gameObject.TryGetComponent<Player_BulletTest(out Player_BulletTest char))
+                {
+                    char.Absorb(this);
+                }  */
+            absorbBulletSO.RaiseEvent(this.gameObject, this.gameObject.tag, collision.gameObject.GetInstanceID());
         }    
            
     }

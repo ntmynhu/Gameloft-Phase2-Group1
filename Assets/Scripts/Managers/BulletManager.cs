@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 public class BulletManager : MonoBehaviour
 {
     [SerializeField] Bullet bullletPref;
-    private static IObjectPool<Bullet> bulletPool;
+    public IObjectPool<Bullet> bulletPool;
     [SerializeField] private bool collectionCheck;
 
     //Singleton
@@ -34,12 +34,13 @@ public class BulletManager : MonoBehaviour
 
     private void ReleaseBullet(Bullet bullet)
     {
-        bullet.enabled = false;
+        Debug.Log("bullet released");
+        bullet.gameObject.SetActive(false);
     }
 
     private void GetBullet(Bullet bullet)
     {
-        bullet.enabled = true;
+        bullet.gameObject.SetActive(true);
     }
     private void DestroyBullet(Bullet bullet)
     {
@@ -51,5 +52,14 @@ public class BulletManager : MonoBehaviour
         Bullet bullet = bulletPool.Get();
         bullet.tag = tag;
         return bullet;
+    }    
+    
+    public void GetBulletToTransform(Vector3 transform, float radius, string tag, int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            Bullet bullet = GetBullet(tag);
+            bullet.transform.position = transform + new Vector3(Random.Range(0, radius), Random.Range(0, radius), 0);
+        }
     }    
 }

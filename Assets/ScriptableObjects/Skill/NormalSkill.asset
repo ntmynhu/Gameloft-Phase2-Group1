@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa75ac36afcc5cb40a29647a3266a5c1, type: 3}
+  m_Name: NormalSkill
+  m_EditorClassIdentifier: 
+  name: Normal Skill
+  id: -1
+  action: {fileID: -7934009501086344513, guid: 059995ee8018e7f4a95c590f3a51de89, type: 3}
+  startAction: {fileID: -7934009501086344513, guid: 059995ee8018e7f4a95c590f3a51de89, type: 3}
+  endAction: {fileID: -7934009501086344513, guid: 059995ee8018e7f4a95c590f3a51de89, type: 3}
+  isCasted: 0
+  dmg: 1
+  castTime: 0
+  state: 1
+  takeDamageSO: {fileID: 11400000, guid: ab7c196636d1e524fb1661040270b6cc, type: 2}
