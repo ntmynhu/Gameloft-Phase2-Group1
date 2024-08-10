@@ -49,5 +49,9 @@ public abstract class Skill : ScriptableObject
 
     public virtual void UpdateAimSprite(AimRenderer aimRenderer) { }
     public abstract void Cast(GameObject player = null);
+    public virtual void CancelCast(GameObject player = null)
+    {
+
+    }    
     public abstract void Activate(GameObject player = null);
 }

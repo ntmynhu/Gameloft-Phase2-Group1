@@ -28,4 +28,9 @@ public class PlayerMovement : MonoBehaviour
         maxVel = moveAction.ReadValue<Vector2>() * speed;
         rb.velocity = Vector2.SmoothDamp(rb.velocity, maxVel, ref currVel, smoothTime);
     }
+
+    private void OnDisable()
+    {
+        rb.velocity = Vector2.zero;
+    }
 }
