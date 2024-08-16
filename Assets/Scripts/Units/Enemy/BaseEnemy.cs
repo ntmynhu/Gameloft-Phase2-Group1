@@ -16,7 +16,7 @@ public class BaseEnemy :MonoBehaviour
     [SerializeField]
     Rigidbody2D myRB;
     [SerializeField]
-    private float speed=5f;
+    private float speed = 5f;
     [SerializeField]
     private float attackRange = 10f;
     [SerializeField]
@@ -26,14 +26,14 @@ public class BaseEnemy :MonoBehaviour
     [SerializeField]
     private int maxHP = 100;
     public virtual void Attack() { }
-    public virtual void Move(Vector2 direction) 
+    public virtual void Move(Vector2 direction)
     {
         direction.Normalize();
         myRB.velocity = speed * direction;
     }
     public virtual void Move(GameObject target)
     {
-        transform.position = Vector2.MoveTowards(transform.position,target.transform.position,speed*Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
     }
     public virtual void TakeDamage(int ammount)
     {
@@ -52,7 +52,7 @@ public class BaseEnemy :MonoBehaviour
         switch (CurrentState)
         {
             case (EnemyState.Chasing):
-                Move(Player);
+                //Move(Player);
                 break;
             case (EnemyState.Attacking):
                 //Attacking
@@ -60,7 +60,7 @@ public class BaseEnemy :MonoBehaviour
         }
         if (IsPlayerInRange()) CurrentState = EnemyState.Attacking;
         else CurrentState = EnemyState.Chasing;
-        
+
     }
     private bool IsPlayerInRange()
     {
