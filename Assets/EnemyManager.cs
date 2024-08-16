@@ -8,7 +8,7 @@ public class Enemy
 {
     public BaseEnemy gameObject;
     public float chance;
-    public float weight;
+    [HideInInspector] public float weight;
     [HideInInspector] public IObjectPool<BaseEnemy> pool;
 }
 
@@ -19,16 +19,32 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private List<BaseEnemy> activeEnemies;
     [SerializeField] private float defaultTime;
     [SerializeField] private float spawnRate;
+    [SerializeField] private float shiftedValue;
 
     private float elapsedPhaseTime;
     private float elapsedSpawnTime;
     private float accumulatedWeight;
+    private int currShiftedIndex = 0; // enemy index whose chance will be shifted to another enemy when changing phase
+    private int nextShiftedIndex; // point to index that is after currShiftedIndex;
+    private float realShiftedValue;
+    private int phaseCount = 0;
 
     private void Awake()
     {
-        ChangePhase();
         elapsedPhaseTime = defaultTime;
         elapsedSpawnTime = spawnRate;
+
+        if (enemyTypes.Count < 2)
+        {
+            enemyTypes[0].chance = 100;
+        }
+        else
+        {
+            enemyTypes[0].chance = 60;
+            enemyTypes[1].chance = 40;
+        }
+        
+        ChangePhase();
 
         foreach (Enemy enemy in enemyTypes)
         {
@@ -71,11 +87,61 @@ public class EnemyManager : MonoBehaviour
     private void ChangePhase()
     {
         ClearEnemy();
+        phaseCount++;
+        if (phaseCount > 1)
+            ShiftChance();
+
         accumulatedWeight = 0f;
         foreach (Enemy enemy in enemyTypes)
         {
             accumulatedWeight += enemy.chance;
             enemy.weight = accumulatedWeight;
+        }
+    }
+
+    private void ShiftChance()
+    {
+        if (enemyTypes[enemyTypes.Count - 1].chance == 50f)
+        {
+            return;
+        }
+
+        nextShiftedIndex = currShiftedIndex;
+
+        if (shiftedValue >= enemyTypes[currShiftedIndex].chance)
+        {
+            enemyTypes[currShiftedIndex].chance = 0f;
+            currShiftedIndex++;
+            realShiftedValue = enemyTypes[currShiftedIndex].chance;
+        }
+        else
+        {
+            enemyTypes[currShiftedIndex].chance -= shiftedValue;
+            realShiftedValue = shiftedValue;
+        }
+
+        while (nextShiftedIndex < enemyTypes.Count - 1)
+        {
+            nextShiftedIndex++;
+
+            if (enemyTypes[nextShiftedIndex].chance + realShiftedValue <= 50f)
+            {
+                Debug.Log("case 1");
+                enemyTypes[nextShiftedIndex].chance += realShiftedValue;
+                break;
+            }
+            else
+            {
+                Debug.Log("case 2");
+                enemyTypes[nextShiftedIndex].chance += realShiftedValue;
+                realShiftedValue = enemyTypes[nextShiftedIndex].chance - 50;
+                enemyTypes[nextShiftedIndex].chance -= realShiftedValue;
+            }
+        }
+        Debug.Log(enemyTypes[enemyTypes.Count - 1].chance);
+        if (enemyTypes[enemyTypes.Count - 1].chance == 50f)
+        {
+            enemyTypes[enemyTypes.Count - 2].chance = 50f;
         }
     }
 
