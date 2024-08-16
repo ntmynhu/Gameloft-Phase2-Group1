@@ -6,6 +6,8 @@ public class AimRenderer : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] public Material lineMaterial;
+
 
     public LineRenderer AimLineRenderer
     {
@@ -18,7 +20,6 @@ public class AimRenderer : MonoBehaviour
         get { return spriteRenderer; }
         set { spriteRenderer = value; }
     }
-
     public void DisableAll()
     {
         lineRenderer.enabled = false;
