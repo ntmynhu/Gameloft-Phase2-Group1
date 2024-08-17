@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class BaseEnemy :MonoBehaviour
 {
-    [SerializeField]
-    GameObject Player;
+    public Transform Player;
     enum EnemyState
     {
         Chasing,
@@ -31,9 +30,16 @@ public class BaseEnemy :MonoBehaviour
         direction.Normalize();
         myRB.velocity = speed * direction;
     }
-    public virtual void Move(GameObject target)
+    public virtual void Move(Transform target)
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        // Get a direction vector from us to the target
+        Vector3 dir = target.position - transform.position;
+
+        // Normalize it so that it's a unit direction vector
+        dir.Normalize();
+
+        // Move ourselves in that direction
+        transform.position += dir * speed * Time.deltaTime;
     }
     public virtual void TakeDamage(int ammount)
     {
@@ -49,17 +55,18 @@ public class BaseEnemy :MonoBehaviour
     }
     private void Update()
     {
-        switch (CurrentState)
-        {
-            case (EnemyState.Chasing):
-                //Move(Player);
-                break;
-            case (EnemyState.Attacking):
+       // switch (CurrentState)
+       // {
+           // case (EnemyState.Chasing):
+                Move(Player);
+               // break;
+            //case (EnemyState.Attacking):
                 //Attacking
-                break;
-        }
-        if (IsPlayerInRange()) CurrentState = EnemyState.Attacking;
-        else CurrentState = EnemyState.Chasing;
+              //  break;
+       // }
+       // if (IsPlayerInRange()) CurrentState = EnemyState.Attacking;
+       // else 
+      //  CurrentState = EnemyState.Chasing;
 
     }
     private bool IsPlayerInRange()

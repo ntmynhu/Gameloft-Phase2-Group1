@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   activeEnemies: []
-  defaultTime: 10
+  defaultTime: 15
   spawnRate: 3
   shiftedValue: 0
+  PlayerRef: {fileID: 0}
