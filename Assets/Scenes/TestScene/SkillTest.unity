@@ -770,7 +770,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 2fb26cf900ea7494f93ad51734a84ccb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -790,7 +790,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -838,14 +838,14 @@ LineRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
-      m_ColorSpace: -1
+      m_Mode: 1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 3
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -1068,7 +1068,6 @@ GameObject:
   - component: {fileID: 1522447439}
   - component: {fileID: 1522447438}
   - component: {fileID: 1522447437}
-  - component: {fileID: 1522447450}
   m_Layer: 0
   m_Name: Player
   m_TagString: Allie
@@ -1090,6 +1089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 1322258231}
   spriteRenderer: {fileID: 1322258229}
+  lineMaterial: {fileID: 0}
 --- !u!114 &1522447438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,6 +1165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 1
+  accuracyRange: 0
 --- !u!114 &1522447442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1389,18 +1390,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   publisher: {fileID: 11400000, guid: ab7c196636d1e524fb1661040270b6cc, type: 2}
---- !u!114 &1522447450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522447436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4003b854c5fef0b4e9ed093cb18e04d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1913074119
 PrefabInstance:
   m_ObjectHideFlags: 0

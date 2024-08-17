@@ -11,12 +11,13 @@ public class SummonSkill : Skill
     public float countdownTime; // The time in seconds for the countdown
     //public float maxCountdownTime = 3f;
     private List<Vector3> linePositions = new List<Vector3>();
-
+    private List<bool> lineHitted = new List<bool>();
     
-    private void AddLinePosition(Vector3 start, Vector3 end)
+    private void AddLinePosition(Vector3 start, Vector3 end, bool hitted = false)
     {
         linePositions.Add(start);
         linePositions.Add(end);
+        lineHitted.Add(hitted);
     }
     public override void Cast(GameObject Caster)
     {
@@ -49,6 +50,8 @@ public class SummonSkill : Skill
         }*/
         linePositions.Clear();
         Bullet[] bullets = FindObjectsOfType<Bullet>();
+
+        bool hitted = false;
         foreach (Bullet bullet in bullets)
         {
             if (bullet != null)
@@ -56,19 +59,37 @@ public class SummonSkill : Skill
                 if (bullet.IsCollectable)
                 {
                     // Visualize the line in the Scene view
-                    AddLinePosition(bullet.transform.position, Caster.transform.position);
+                    // Perform the Linecast
+                    /*RaycastHit2D[] hit = Physics2D.LinecastAll(bullet.transform.position, Caster.transform.position);
+                    if (hit.Length > 0)
+                    {
+                        for (int i = 0; i < hit.Length; i++)
+                        {
+                            if (hit[i].collider.gameObject.tag == "Enemy")
+                            {
+                                hitted = true;
+                                break;
+                            }
+                        }
+                    }*/
+
+                    AddLinePosition(bullet.transform.position, Caster.transform.position, hitted);
                 }
             }
         }
         Caster.GetComponent<PlayerMovement>().enabled = false;
     }
+    [SerializeField]
+    Texture2D colorsTexture;
     public override void UpdateAimSprite(AimRenderer aimRenderer)
     {
         aimRenderer.AimLineRenderer.enabled = true;
-        aimRenderer.AimLineRenderer.positionCount = linePositions.Count;
 
+        aimRenderer.AimLineRenderer.positionCount = linePositions.Count;
         for (int i = 0; i < linePositions.Count; i++)
         {
+            // Set color for the segment
+
             aimRenderer.AimLineRenderer.SetPosition(i, linePositions[i]);
         }
     }
