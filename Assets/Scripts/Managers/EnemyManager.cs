@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float defaultTime;
     [SerializeField] private float spawnRate;
     [SerializeField] private float shiftedValue;
-
+    [SerializeField] private Transform PlayerRef;
     private float elapsedPhaseTime;
     private float elapsedSpawnTime;
     private float accumulatedWeight;
@@ -53,6 +53,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     BaseEnemy e = Instantiate(enemy.gameObject);
                     e.gameObject.name = enemy.gameObject.name;
+                    e.Player = PlayerRef;
                     return e;
                 },
                 (e) =>
