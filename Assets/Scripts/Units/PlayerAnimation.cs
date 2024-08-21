@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] private PolygonCollider2D maxSizeCollider;
-    [SerializeField] private PolygonCollider2D midSizeCollider;
-    [SerializeField] private PolygonCollider2D minSizeCollider;
+    [SerializeField] private GameObject playerMaxSize;
+    [SerializeField] private GameObject playerMidSize;
+    [SerializeField] private GameObject playerMinSize;
     [SerializeField] private PlayerHealth playerHealth;
 
     private Animator playerAnim;
     private Rigidbody2D rb;
     private PolygonCollider2D currentCollider;
+    private GameObject spriteHolder;
 
     private string IS_WALKING = "isWalking";
     private string IS_ATTACKING = "isAttacking";
@@ -43,19 +44,19 @@ public class PlayerAnimation : MonoBehaviour
     {
         float horizontalVelocity = rb.velocity.x;
 
-        if (horizontalVelocity > 0)
+        if (horizontalVelocity > 0.1f) //Facing right
         {
             Debug.Log("Facing right");
-            Vector3 scale = transform.localScale;
-            scale.x *= 1;
-            transform.localScale = scale; //Facing right
+            spriteHolder.transform.localScale = new Vector3(-1, 1, 1); 
         }
-        else if (horizontalVelocity < 0)
+        else if (horizontalVelocity < -0.1f) //Facing left
         {
             Debug.Log("Facing left");
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale; //Facing left
+            spriteHolder.transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+
         }
     }
 
@@ -63,15 +64,18 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (playerHealth.GetHealth() > 6)
         {
-            SwapCollider(maxSizeCollider);
+            spriteHolder = playerMaxSize;
+            SwapCollider(spriteHolder.GetComponent<PolygonCollider2D>());
         }
         else if (playerHealth.GetHealth() > 1)
         {
-            SwapCollider(midSizeCollider);
+            spriteHolder = playerMidSize;
+            SwapCollider(spriteHolder.GetComponent<PolygonCollider2D>());
         }
         else
         {
-            SwapCollider(minSizeCollider);
+            spriteHolder = playerMinSize;
+            SwapCollider(spriteHolder.GetComponent<PolygonCollider2D>());
         }
     }
 
