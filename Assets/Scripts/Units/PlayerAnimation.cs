@@ -5,20 +5,22 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] private GameObject playerMaxSize;
-    [SerializeField] private GameObject playerMidSize;
-    [SerializeField] private GameObject playerMinSize;
+    [SerializeField] private PolygonCollider2D maxSizeCollider;
+    [SerializeField] private PolygonCollider2D midSizeCollider;
+    [SerializeField] private PolygonCollider2D minSizeCollider;
     [SerializeField] private PlayerHealth playerHealth;
 
     private Animator playerAnim;
     private Rigidbody2D rb;
     private PolygonCollider2D currentCollider;
-    private GameObject spriteHolder;
 
-    private string IS_WALKING = "isWalking";
-    private string IS_ATTACKING = "isAttacking";
-    private string SIZE = "size";
+    private string HEALTH = "health";
     private string SPEED = "speed";
+    private string ATTACK = "attack";
+    private string ON_SIZE_CHANGED = "onSizeChanged";
+
+    private float playerSpeed;
+    private float health;
 
     private void Awake()
     {
@@ -34,10 +36,19 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        float speed = rb.velocity.magnitude;
-        playerAnim.SetFloat(SPEED, speed);
+        playerSpeed = rb.velocity.magnitude;
+        playerAnim.SetFloat(SPEED, playerSpeed);
+
+        health = playerHealth.GetHealth();
+        playerAnim.SetFloat(HEALTH, health);
+
         UpdatePlayerSize();
         HandlePlayerFacing();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            playerAnim.SetTrigger(ATTACK);
+        }
     }
 
     private void HandlePlayerFacing()
@@ -47,35 +58,29 @@ public class PlayerAnimation : MonoBehaviour
         if (horizontalVelocity > 0.1f) //Facing right
         {
             Debug.Log("Facing right");
-            spriteHolder.transform.localScale = new Vector3(-1, 1, 1); 
+            transform.localScale = new Vector3(-1, 1, 1); 
         }
         else if (horizontalVelocity < -0.1f) //Facing left
         {
             Debug.Log("Facing left");
-            spriteHolder.transform.localScale = new Vector3(1, 1, 1);
-        }
-        else
-        {
-
+            transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
+    //Change the spriteHolder and the collider of player
     private void UpdatePlayerSize()
     {
-        if (playerHealth.GetHealth() > 6)
+        if (health > 6)
         {
-            spriteHolder = playerMaxSize;
-            SwapCollider(spriteHolder.GetComponent<PolygonCollider2D>());
+            SwapCollider(maxSizeCollider);
         }
-        else if (playerHealth.GetHealth() > 1)
+        else if (health > 1)
         {
-            spriteHolder = playerMidSize;
-            SwapCollider(spriteHolder.GetComponent<PolygonCollider2D>());
+            SwapCollider(midSizeCollider);
         }
         else
         {
-            spriteHolder = playerMinSize;
-            SwapCollider(spriteHolder.GetComponent<PolygonCollider2D>());
+            SwapCollider(minSizeCollider);
         }
     }
 

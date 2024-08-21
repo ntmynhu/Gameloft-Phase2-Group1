@@ -219,7 +219,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6520621586903910224}
+  m_Father: {fileID: 9202537969564257162}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1230380019209704387
 SpriteRenderer:
@@ -467,7 +467,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 947111780555766015}
-  - {fileID: 5848487283845870751}
   - {fileID: 9202537969564257162}
   - {fileID: 1438207348456640421}
   - {fileID: 3515631844080092208}
@@ -813,9 +812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a10d6aefee9a544ac9628eca5748cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxSize: {fileID: 7811875647202551938}
-  playerMidSize: {fileID: 2972245441300980842}
-  playerMinSize: {fileID: 5987489408069891512}
+  maxSizeCollider: {fileID: 97729327661163155}
+  midSizeCollider: {fileID: 5376372095323431492}
+  minSizeCollider: {fileID: 2231352726637454267}
   playerHealth: {fileID: 2308859863586120960}
 --- !u!95 &932859812427654744
 Animator:
@@ -1346,6 +1345,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2861065090115127487}
+  - {fileID: 5848487283845870751}
   m_Father: {fileID: 6520621586903910224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1585244216452570482
