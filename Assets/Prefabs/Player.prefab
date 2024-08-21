@@ -813,13 +813,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a10d6aefee9a544ac9628eca5748cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSizeList:
-  - playerSprite: {fileID: 437948678, guid: 4679099a15a6df643b134691471186ec, type: 3}
-    collider: {fileID: 97729327661163155}
-  - playerSprite: {fileID: -523905338, guid: 4679099a15a6df643b134691471186ec, type: 3}
-    collider: {fileID: 5376372095323431492}
-  - playerSprite: {fileID: -580670639, guid: 4679099a15a6df643b134691471186ec, type: 3}
-    collider: {fileID: 2231352726637454267}
+  playerMaxSize: {fileID: 7811875647202551938}
+  playerMidSize: {fileID: 2972245441300980842}
+  playerMinSize: {fileID: 5987489408069891512}
+  playerHealth: {fileID: 2308859863586120960}
 --- !u!95 &932859812427654744
 Animator:
   serializedVersion: 5
