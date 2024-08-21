@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6636474807269444032}
   - component: {fileID: -9145277270273597552}
   - component: {fileID: 2004852351525423135}
+  - component: {fileID: 2106112698861615586}
   m_Layer: 0
   m_Name: EnemyTest_2
   m_TagString: Untagged
@@ -178,3 +179,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8125, y: 2.25}
   m_EdgeRadius: 0
+--- !u!195 &2106112698861615586
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896908221873568400}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.40625
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2.25
+  m_BaseOffset: 1.125
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
