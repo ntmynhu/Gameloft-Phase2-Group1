@@ -28,6 +28,7 @@ public class NormalSkill : Skill
     [SerializeField] private TakeDamagePublisherSO takeDamageSO;
     public override void Activate(GameObject Caster)
     {
+        Debug.Log("NormalSkill Pang Pang");
         this.SetReady();
         isCasted = false;
     }
