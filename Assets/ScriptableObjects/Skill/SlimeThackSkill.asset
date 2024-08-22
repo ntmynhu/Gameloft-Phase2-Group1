@@ -23,7 +23,7 @@ MonoBehaviour:
   state: 0
   radius: 4
   radiusMultipler: 0.5
-  aimPos: {x: 3.3964148, y: -0.5385921, z: 0}
+  aimPos: {x: 2.3450909, y: 0.22393058, z: 0}
   aimSpeed: 0
   skillAimSprite: {fileID: 21300000, guid: c9518a3d6b3de554a8f2bd3a4a2b9917, type: 3}
   remainingHealth: 1

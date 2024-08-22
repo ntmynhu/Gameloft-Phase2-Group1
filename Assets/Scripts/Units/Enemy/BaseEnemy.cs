@@ -55,7 +55,7 @@ public class BaseEnemy :MonoBehaviour
        // switch (CurrentState)
        // {
            // case (EnemyState.Chasing):
-                Move(Player);
+                //Move(Player);
                // break;
             //case (EnemyState.Attacking):
                 //Attacking
