@@ -29,7 +29,10 @@ public class EnemyManager : MonoBehaviour
     private float realShiftedValue;
     private int phaseCount = 0;
 
-    private void Awake()
+    [SerializeField]
+    private FloatPublisherSO sendElapsedPhaseTimeSO;
+
+   private void Awake()
     {
         elapsedPhaseTime = defaultTime;
         elapsedSpawnTime = spawnRate;
@@ -174,6 +177,7 @@ public class EnemyManager : MonoBehaviour
             elapsedPhaseTime = defaultTime;
             elapsedSpawnTime = spawnRate;
         }
+        sendElapsedPhaseTimeSO.RaiseEvent(elapsedPhaseTime);
 
         elapsedSpawnTime -= Time.deltaTime;
         if (elapsedSpawnTime < 0f)
