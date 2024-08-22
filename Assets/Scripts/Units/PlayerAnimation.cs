@@ -17,7 +17,7 @@ public class PlayerAnimation : MonoBehaviour
     private string HEALTH = "health";
     private string SPEED = "speed";
     private string ATTACK = "attack";
-    private string ON_SIZE_CHANGED = "onSizeChanged";
+    private string IS_MOVING = "isMoving";
 
     private float playerSpeed;
     private float health;
@@ -36,19 +36,37 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        playerSpeed = rb.velocity.magnitude;
-        playerAnim.SetFloat(SPEED, playerSpeed);
-
         health = playerHealth.GetHealth();
         playerAnim.SetFloat(HEALTH, health);
 
         UpdatePlayerSize();
         HandlePlayerFacing();
+        HandleMovingAnimation();
 
         if (Input.GetMouseButtonDown(0))
         {
             playerAnim.SetTrigger(ATTACK);
         }
+    }
+
+    private float smoothedSpeed;
+    private float smoothingFactor = 10f;
+    private bool isMoving;
+    public float threshold = 0.1f;
+
+    private void HandleMovingAnimation()
+    {
+        float targetSpeed = rb.velocity.magnitude;
+
+        //Debug.Log("target: " + targetSpeed);
+        if (Mathf.Abs(targetSpeed - smoothedSpeed) > threshold)
+        {
+            smoothedSpeed = Mathf.Lerp(smoothedSpeed, targetSpeed, Time.deltaTime * smoothingFactor);
+            //Debug.Log("smooth: " + smoothedSpeed);
+        }
+
+        isMoving = smoothedSpeed > threshold;
+        playerAnim.SetBool("isMoving", isMoving);
     }
 
     private void HandlePlayerFacing()

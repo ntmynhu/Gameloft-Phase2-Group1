@@ -816,6 +816,7 @@ MonoBehaviour:
   midSizeCollider: {fileID: 5376372095323431492}
   minSizeCollider: {fileID: 2231352726637454267}
   playerHealth: {fileID: 2308859863586120960}
+  threshold: 0.1
 --- !u!95 &932859812427654744
 Animator:
   serializedVersion: 5
