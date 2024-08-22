@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 public abstract class Skill : ScriptableObject
 {
     public new string name;
     public int id;
+    public Sprite image;
+
     public InputActionReference action;
     public InputActionReference startAction;
     public InputActionReference endAction;

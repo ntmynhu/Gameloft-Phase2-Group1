@@ -10,8 +10,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject healthBarPanel;
     [SerializeField] private TMP_Text nextPhaseTimeText;
     [SerializeField] private TMP_Text totalTimeText;
-    [SerializeField] private Image slimeThachImage;
-    [SerializeField] private Image SummonImage;
 
     private List<Image> healthBar;
     private float playerMaxHealth;
@@ -90,32 +88,5 @@ public class UIManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(totalTime / 60);
         int seconds = Mathf.FloorToInt(totalTime % 60);
         totalTimeText.text = "Total Time " + string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-
-    public void DisableSlimeThachSkill()
-    {
-        Color color = slimeThachImage.color;
-        color.a = 0.5f;
-        slimeThachImage.color = color;
-    }
-    public void EnableSlimeThachSkill()
-    {
-        Color color = slimeThachImage.color;
-        color.a = 1f;
-        slimeThachImage.color = color;
-    }
-
-    public void DisableSummonSkill()
-    {
-        Color color = SummonImage.color;
-        color.a = 0.5f;
-        SummonImage.color = color;
-    }
-
-    public void EnableSummonSkill()
-    {
-        Color color = SummonImage.color;
-        color.a = 1f;
-        SummonImage.color = color;
     }
 }

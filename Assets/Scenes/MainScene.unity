@@ -508,6 +508,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 854717128fa97ed46a0b55023232aa95, type: 2}
   - {fileID: 11400000, guid: f5e1cdea9756a78479ada054f29c1c7c, type: 2}
   activator: {fileID: 0}
+  disableSkill: {fileID: 11400000, guid: f82742d2bcdd7bb488692b25a33a94c7, type: 2}
+  enableSkill: {fileID: 11400000, guid: bd3ec843898f42946aaa35ff8ee996c4, type: 2}
 --- !u!114 &470291926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,10 +601,6 @@ MonoBehaviour:
   sendNormalThresholdSO: {fileID: 11400000, guid: 4adf27ebc898d734b9fb8b4ead435dd2, type: 2}
   sendCurrentHealthSO: {fileID: 11400000, guid: be86fafb5da95454cb8b532b971ac9ae, type: 2}
   sendMaxHealthSO: {fileID: 11400000, guid: 63d9bc2e6571b1c49b62ed50757913ab, type: 2}
-  disableSkill1SO: {fileID: 11400000, guid: 796bebcaea11f9a4a9e85a9d758c8f3c, type: 2}
-  disableSkill2SO: {fileID: 11400000, guid: 295f7d0b8ff55474aa4f577f31ba10bb, type: 2}
-  enableSkill1SO: {fileID: 11400000, guid: 1b0a8d553edbeb1459bb0f1308d2743d, type: 2}
-  enableSkill2SO: {fileID: 11400000, guid: 85fecb114b64f5e4e96bcd7199c90a6c, type: 2}
 --- !u!114 &470291930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5116,8 +5114,164 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9125986794551992237, guid: 925d866c7ca622046b99a13db85971ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 927336143}
+    - targetCorrespondingSourceObject: {fileID: 9125986794551992237, guid: 925d866c7ca622046b99a13db85971ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 927336142}
+    - targetCorrespondingSourceObject: {fileID: 3872215828362834742, guid: 925d866c7ca622046b99a13db85971ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 927336141}
+    - targetCorrespondingSourceObject: {fileID: 3872215828362834742, guid: 925d866c7ca622046b99a13db85971ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 927336140}
   m_SourcePrefab: {fileID: 100100000, guid: 925d866c7ca622046b99a13db85971ba, type: 3}
+--- !u!1 &927336136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3872215828362834742, guid: 925d866c7ca622046b99a13db85971ba, type: 3}
+  m_PrefabInstance: {fileID: 927336135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &927336137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5269332742873520605, guid: 925d866c7ca622046b99a13db85971ba, type: 3}
+  m_PrefabInstance: {fileID: 927336135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927336136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecff2e9910a4eed46aeebce541a30fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &927336138 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9125986794551992237, guid: 925d866c7ca622046b99a13db85971ba, type: 3}
+  m_PrefabInstance: {fileID: 927336135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &927336139 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2437323767349760203, guid: 925d866c7ca622046b99a13db85971ba, type: 3}
+  m_PrefabInstance: {fileID: 927336135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927336138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecff2e9910a4eed46aeebce541a30fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &927336140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927336136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e747c2cfc6f878d41b2ca059547caad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 927336137}
+        m_TargetAssemblyTypeName: SkillUIElement, Assembly-CSharp
+        m_MethodName: DisableSkillUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  publisher: {fileID: 11400000, guid: f82742d2bcdd7bb488692b25a33a94c7, type: 2}
+--- !u!114 &927336141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927336136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e747c2cfc6f878d41b2ca059547caad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 927336137}
+        m_TargetAssemblyTypeName: SkillUIElement, Assembly-CSharp
+        m_MethodName: EnableSkillUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  publisher: {fileID: 11400000, guid: bd3ec843898f42946aaa35ff8ee996c4, type: 2}
+--- !u!114 &927336142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927336138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e747c2cfc6f878d41b2ca059547caad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 927336139}
+        m_TargetAssemblyTypeName: SkillUIElement, Assembly-CSharp
+        m_MethodName: EnableSkillUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  publisher: {fileID: 11400000, guid: bd3ec843898f42946aaa35ff8ee996c4, type: 2}
+--- !u!114 &927336143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927336138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e747c2cfc6f878d41b2ca059547caad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 927336139}
+        m_TargetAssemblyTypeName: SkillUIElement, Assembly-CSharp
+        m_MethodName: DisableSkillUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  publisher: {fileID: 11400000, guid: f82742d2bcdd7bb488692b25a33a94c7, type: 2}
 --- !u!1 &967108710
 GameObject:
   m_ObjectHideFlags: 3

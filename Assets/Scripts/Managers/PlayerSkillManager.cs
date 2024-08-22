@@ -11,7 +11,9 @@ public class PlayerSkillManager : MonoBehaviour
     public List<Skill> skillList; //All skills stored here
     public SkillActivator activator;
 
-  
+    [SerializeField] private FloatPublisherSO disableSkill;
+    [SerializeField] private FloatPublisherSO enableSkill;
+
     private void Awake()
     {
         activator = GetComponent<SkillActivator>();
@@ -73,10 +75,12 @@ public class PlayerSkillManager : MonoBehaviour
     public void ReadySkill(Skill skill)
     {
         skill.SetReady();
+        enableSkill.RaiseEvent(skill.id);
     }
 
     public void DisableSkill(Skill skill)
     {
         skill.SetDisabled();
+        disableSkill.RaiseEvent(skill.id);
     }
 }

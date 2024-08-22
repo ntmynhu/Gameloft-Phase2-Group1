@@ -13,11 +13,6 @@ public class PlayerHealth : BaseHealth
     [SerializeField] private FloatPublisherSO sendCurrentHealthSO;
     [SerializeField] private FloatPublisherSO sendMaxHealthSO;
 
-    [SerializeField] private VoidPublisherSO disableSkill1SO;
-    [SerializeField] private VoidPublisherSO disableSkill2SO;
-    [SerializeField] private VoidPublisherSO enableSkill1SO;
-    [SerializeField] private VoidPublisherSO enableSkill2SO;
-
     private void Awake()
     {
         this.gameObject.tag = "Allie";
@@ -26,9 +21,6 @@ public class PlayerHealth : BaseHealth
         sendGoodThresholdSO.RaiseEvent(goodThreshold);
         sendNormalThresholdSO.RaiseEvent(normalThreshold);
         sendMaxHealthSO.RaiseEvent(maxHealth);
-
-        disableSkill1SO.RaiseEvent();
-        disableSkill2SO.RaiseEvent();
     }
 
     public void Absorb(Bullet bullet)
@@ -79,25 +71,20 @@ public class PlayerHealth : BaseHealth
             // process good state changes
             //PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_1);
             skillManager.DisableSkill(skillManager.skill_1);
-            disableSkill1SO.RaiseEvent();
             skillManager.DisableSkill(skillManager.skill_2);
-            disableSkill2SO.RaiseEvent();
         }
         else if (state == SlimeState.Normal)
         {
             // process normal state changes
             //PlayerSkillManager.Instance.ReadySkill(PlayerSkillManager.Instance.skill_1);
             skillManager.ReadySkill(skillManager.skill_1);
-            enableSkill1SO.RaiseEvent();
         }
         else
         {
             // process bad state changes
             //PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_1);
             skillManager.ReadySkill(skillManager.skill_2);
-            enableSkill2SO.RaiseEvent();
             skillManager.DisableSkill(skillManager.skill_1);
-            disableSkill1SO.RaiseEvent();
         }
     }
 }
