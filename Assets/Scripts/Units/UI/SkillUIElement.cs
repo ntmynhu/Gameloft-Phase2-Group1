@@ -7,18 +7,21 @@ public class SkillUIElement : MonoBehaviour
 {
     [SerializeField] private Skill skill;
 
-    private void Start()
+    public void SetSkill(Skill skill)
     {
-        this.gameObject.GetComponent<Image>().sprite = skill.image;
+        this.skill = skill;
+        this.gameObject.GetComponent<Image>().sprite = skill.skillImage;
+        DisableSkillUI(skill.id);
     }
 
     public void EnableSkillUI(float id)
     {
         if (id == skill.id)
         {
-            Color color = this.gameObject.GetComponent<Image>().material.color;
+            Color color = this.gameObject.GetComponent<Image>().color;
             color.a = 1f;
-            this.gameObject.GetComponent<Image>().material.color = color;
+            Debug.Log("ENABLE");
+            this.gameObject.GetComponent<Image>().color = color;
         }
     }
 
@@ -26,9 +29,10 @@ public class SkillUIElement : MonoBehaviour
     {
         if (id == skill.id)
         {
-            Color color = this.gameObject.GetComponent<Image>().material.color;
+            Color color = this.gameObject.GetComponent<Image>().color;
             color.a = 0.5f;
-            this.gameObject.GetComponent<Image>().material.color = color;
+            Debug.Log("DISABLE");
+            this.gameObject.GetComponent<Image>().color = color;
         }
     }
 }
