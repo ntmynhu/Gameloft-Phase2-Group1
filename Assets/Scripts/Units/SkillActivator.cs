@@ -7,13 +7,13 @@ public class SkillActivator : MonoBehaviour
 {
     public Skill crnSkill;
     public AimRenderer aimRenderer;
-    [SerializeField] ActivatorState activatorState;
+    public bool swapOut = true;
     private void Awake()
     {
         aimRenderer = GetComponent<AimRenderer>();
     }
 
-    public void SetSkill(Skill skill, bool isStarted = true)
+    public void SetSkill(Skill skill, bool swapOut = true)
     {
         if (crnSkill != null)
         {
@@ -22,16 +22,12 @@ public class SkillActivator : MonoBehaviour
                 return;
             }
             UnSubscribeActionEvents(crnSkill);
-            Debug.Log("Switched Skill!");
         }
         crnSkill = skill;
-
+        this.swapOut = swapOut;
         SubscribeActionEvents(crnSkill);
+        Action_started();
         Debug.Log("Switched Skill!");
-        if (isStarted)
-            activatorState = ActivatorState.started;
-        else
-            activatorState = ActivatorState.waiting;
 
     }
 
@@ -61,77 +57,59 @@ public class SkillActivator : MonoBehaviour
     }
     private void Action_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (activatorState == ActivatorState.started)
+        if (crnSkill != null)
         {
-            activatorState = ActivatorState.performed;
-            Debug.Log("Action performed..." + obj.action.name);
+            crnSkill.NextStage(obj.action.name, "Perform");
         }
+        Debug.Log("Action performed..." + obj.action.name);
     }
 
     private void Action_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
 
-        activatorState = ActivatorState.started;
+        if (crnSkill != null)
+        {
+            crnSkill.NextStage(obj.action.name, "Start");
+        }
         Debug.Log("Action started..."+obj.action.name);
     }
+
+    private void Action_started()
+    {
+
+        if (crnSkill != null)
+        {
+            crnSkill.NextStage(crnSkill.startAction.action.name, "Start");
+        }
+        Debug.Log("Action started..." + crnSkill.startAction.action.name);
+    }
+
     private void Action_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (activatorState == ActivatorState.started)
+        if (crnSkill!=null)
         {
-            activatorState = ActivatorState.canceled;
-            Debug.Log("Action canceled..." + obj.action.name);
+            crnSkill.NextStage(obj.action.name, "Cancel");
         }
+        Debug.Log("Action canceled..." + obj.action.name);
     }
     private void Update()
     {
         if (crnSkill != null)
         {
-            // Check if the action is assigned and the action is triggered
-            /*if (crnSkill.action != null && crnSkill.action.action.triggered)
-            {
-                
-            }*/
-
-            //Debug.Log("Activator " + crnSkill + crnSkill.GetState());
+            crnSkill.PerformCurrentAction(gameObject, aimRenderer);
             switch (crnSkill.GetState())
             {
                 case Skill.SkillState.ready:
-                    if (activatorState==ActivatorState.started)
+                    if (swapOut)
                     {
-                        crnSkill.Cast(gameObject);
-                        crnSkill.SetCasting();
-                    }
-                    break;
-
-                case Skill.SkillState.casting:
-                    crnSkill.Cast(gameObject);
-                    // Check if the action was released
-                    crnSkill.UpdateAimSprite(aimRenderer);
-                    if (activatorState == ActivatorState.performed)
-                    {
-                        crnSkill.SetActive();
-                        Debug.Log("lmao");
-                    }
-                    else if (activatorState == ActivatorState.canceled)
-                    {
-                        crnSkill.CancelCast(gameObject);
-                        crnSkill.SetReady();
-                        aimRenderer.DisableAll();
                         UnSubscribeActionEvents(crnSkill);
+                        aimRenderer.DisableAll();
                         crnSkill = null;
                     }
-                    
                     break;
-
-                case Skill.SkillState.active:
-                    crnSkill.Activate(gameObject);
-                    crnSkill.UpdateAimSprite(aimRenderer);
-                    activatorState = ActivatorState.waiting;
-                    break;
-
                 case Skill.SkillState.disabled:
-                    aimRenderer.DisableAll();
                     UnSubscribeActionEvents(crnSkill);
+                    aimRenderer.DisableAll();
                     crnSkill = null;
                     break;
             }

@@ -26,10 +26,45 @@ public class NormalSkill : Skill
     }
 
     [SerializeField] private TakeDamagePublisherSO takeDamageSO;
+
+
     public override void Activate(GameObject Caster)
     {
         Debug.Log("NormalSkill Pang Pang");
         this.SetReady();
         isCasted = false;
+    }
+
+    public override void NextStage(string actionName, string actionState)
+    {
+        if(actionName == startAction.action.name)
+        {
+            switch(actionState)
+            {
+                case "Start":
+                    SetCasting();
+                    break;
+                case "Cancel":
+                case "Perform":
+                    SetActive();
+                    break;
+            }
+        }
+    }
+
+    public override void PerformCurrentAction(GameObject player = null, AimRenderer aimRenderer = null)
+    {
+        switch (state)
+        {
+            case SkillState.ready:
+            case SkillState.disabled:
+                break;
+            case SkillState.casting:
+                Cast(player);
+                break;
+            case SkillState.active:
+                Activate(player);
+                break;
+        }    
     }
 }

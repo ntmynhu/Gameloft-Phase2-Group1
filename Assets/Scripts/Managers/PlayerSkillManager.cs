@@ -22,11 +22,7 @@ public class PlayerSkillManager : MonoBehaviour
 
     private void Update()
     {
-        if (activator.crnSkill == null)
-        {
-            activator.SetSkill(normal_skill, false);
-            this.gameObject.GetComponent<ShootProjectiles>().enabled = true;
-        }
+        
     }
     private void Action_started_Skill1(InputAction.CallbackContext obj)
     {
@@ -42,6 +38,7 @@ public class PlayerSkillManager : MonoBehaviour
 
     public void SetSkills(int skill1ID, int skill2ID)
     {
+        normal_skill.startAction.action.started += Action_started_normalSkill;
         if (skill_1 != null)
         {
             skill_1.startAction.action.started -= Action_started_Skill1;
@@ -55,12 +52,24 @@ public class PlayerSkillManager : MonoBehaviour
         if (skill_1 != null)
         {
             skill_1.startAction.action.started += Action_started_Skill1;
+            DisableSkill(skill_1);
         }
         if (skill_2 != null)
         {
             skill_2.startAction.action.started += Action_started_Skill2;
+            DisableSkill(skill_2);
         }
-    }    
+    }
+
+    private void Action_started_normalSkill(InputAction.CallbackContext obj)
+    {
+        if (activator.crnSkill == null)
+        {
+            activator.SetSkill(normal_skill, false);
+            this.gameObject.GetComponent<ShootProjectiles>().enabled = true;
+        }
+    }
+
     public void ReadySkill(Skill skill)
     {
         skill.SetReady();

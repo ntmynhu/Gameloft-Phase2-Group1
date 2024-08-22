@@ -20,34 +20,18 @@ public class SummonSkill : Skill
         lineHitted.Add(hitted);
     }
     public override void Cast(GameObject Caster)
-    {
-        /*if (state == SkillState.ready)
-        {
-            countdownTime = castTime;
-            Bullet[] bullets = FindObjectsOfType<Bullet>();
-            foreach (Bullet bullet in bullets)
-            {
-                if (bullet != null)
-                {
-                    if (bullet.IsCollectable)
-                    {
-                        // Visualize the line in the Scene view
-                        AddLinePosition(bullet.transform.position, Caster.transform.position);
-                    }
-                }
-            }
-            //isCasted = false;
-        }
+    { 
         if (countdownTime <= 0)
         {
             isCasted = true;
             this.SetActive();
-            countdownTime = castTime;
+            
         }
         else
         {
             countdownTime -= Time.deltaTime;
-        }*/
+        }
+
         linePositions.Clear();
         Bullet[] bullets = FindObjectsOfType<Bullet>();
 
@@ -164,5 +148,53 @@ public class SummonSkill : Skill
         linePositions.Clear();
         Caster.GetComponent<PlayerMovement>().enabled = true;
         SetDisabled();
+    }
+
+    public override void NextStage(string actionName, string actionState)
+    {
+        if (actionName == startAction.action.name)
+        {
+            switch (actionState)
+            {
+                case "Start":
+                    SetCasting();
+                    countdownTime = castTime;
+                    break;
+                case "Cancel":
+                    if(isCasted == false)
+                        SetReady();
+                    break;
+                case "Perform":
+                    SetActive();
+                    break;
+            }
+        }
+    }
+
+    public override void PerformCurrentAction(GameObject player = null, AimRenderer aimRenderer = null)
+    {
+        switch (state)
+        {
+            case SkillState.ready:
+                if (isCasted == false)
+                {
+                    CancelCast(player);
+                    aimRenderer.DisableAll();
+                    isCasted = true;
+                }
+                break;
+            case SkillState.disabled:
+                aimRenderer.DisableAll();
+                break;
+            case SkillState.casting:
+                isCasted = false;
+                Cast(player);
+                UpdateAimSprite(aimRenderer);
+                break;
+            case SkillState.active:
+                Activate(player);
+                UpdateAimSprite(aimRenderer);
+                break;
+        }
     }
 }
