@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BaseEnemy :MonoBehaviour
 {
     public Transform Player;
+    private NavMeshAgent agent;
     enum EnemyState
     {
         Chasing,
@@ -27,19 +29,11 @@ public class BaseEnemy :MonoBehaviour
     public virtual void Attack() { }
     public virtual void Move(Vector2 direction)
     {
-        direction.Normalize();
-        myRB.velocity = speed * direction;
+        // should remove this func
     }
     public virtual void Move(Transform target)
     {
-        // Get a direction vector from us to the target
-        Vector3 dir = target.position - transform.position;
-
-        // Normalize it so that it's a unit direction vector
-        dir.Normalize();
-
-        // Move ourselves in that direction
-        transform.position += dir * speed * Time.deltaTime;
+        agent.SetDestination(target.position);
     }
     public virtual void TakeDamage(int ammount)
     {
@@ -52,6 +46,9 @@ public class BaseEnemy :MonoBehaviour
     private void Start()
     {
         currentHP = maxHP;
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
     private void Update()
     {
