@@ -11,19 +11,17 @@ public class PlayerSkillManager : MonoBehaviour
     public List<Skill> skillList; //All skills stored here
     public SkillActivator activator;
 
-    
-
     private void Awake()
     {
         activator = GetComponent<SkillActivator>();
-        SetSkills(0, 1); //STATIC
+        
 
         
     }
 
-    private void Update()
+    private void Start()
     {
-        
+        SetSkills(0, 1); //STATIC
     }
     private void Action_started_Skill1(InputAction.CallbackContext obj)
     {
@@ -56,13 +54,11 @@ public class PlayerSkillManager : MonoBehaviour
         {
             skill_1.startAction.action.started += Action_started_Skill1;
             SetSkillEvent.RaiseEvent(skill_1, 1);
-            DisableSkill(skill_1);
         }
         if (skill_2 != null)
         {
             skill_2.startAction.action.started += Action_started_Skill2;
             SetSkillEvent.RaiseEvent(skill_2, 2);
-            DisableSkill(skill_2);
         }
     }
 
