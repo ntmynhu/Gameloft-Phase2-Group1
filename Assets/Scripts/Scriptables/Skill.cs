@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public abstract class Skill : ScriptableObject
 {
     public new string name;
@@ -21,7 +20,14 @@ public abstract class Skill : ScriptableObject
     }
 
     public SkillState state = SkillState.ready;
-
+    /*  __________________________________
+        |           |                    |
+        v           V                    |
+     disabled <-> ready <-> casting -> active
+         ^                     |
+         |_____________________| 
+    */
+                                                        
     public void SetReady()
     {
         state = SkillState.ready;
@@ -34,12 +40,14 @@ public abstract class Skill : ScriptableObject
 
     public void SetCasting()
     {
-        state = SkillState.casting;
+        if (state == SkillState.ready)
+            state = SkillState.casting;
     }
 
     public void SetActive()
     {
-        state = SkillState.active;
+        if (state == SkillState.casting)
+            state = SkillState.active;
     }
 
     public SkillState GetState()
@@ -54,4 +62,7 @@ public abstract class Skill : ScriptableObject
 
     }    
     public abstract void Activate(GameObject player = null);
+
+    public abstract void PerformCurrentAction(GameObject player = null, AimRenderer aimRenderer = null);
+    public abstract void NextStage(string actionName, string actionState);
 }
