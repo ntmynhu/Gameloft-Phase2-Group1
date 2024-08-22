@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 1224435654217925534}
   - component: {fileID: 2912186021021683833}
   - component: {fileID: 6217374209099174594}
+  - component: {fileID: 5269332742873520605}
   m_Layer: 5
   m_Name: Summon
   m_TagString: Untagged
@@ -212,6 +213,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5269332742873520605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872215828362834742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecff2e9910a4eed46aeebce541a30fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 11400000, guid: 854717128fa97ed46a0b55023232aa95, type: 2}
 --- !u!1 &4031553080136286646
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,10 +738,6 @@ GameObject:
   - component: {fileID: 8442282239721935102}
   - component: {fileID: 2001309338723553158}
   - component: {fileID: 7209813280890832686}
-  - component: {fileID: 7821440480901068321}
-  - component: {fileID: 6554637518309608200}
-  - component: {fileID: 1161376814890794761}
-  - component: {fileID: 4664905209441762102}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -766,8 +776,6 @@ MonoBehaviour:
   healthBarPanel: {fileID: 4031553080136286646}
   nextPhaseTimeText: {fileID: 384488422038220651}
   totalTimeText: {fileID: 6717649331759212945}
-  slimeThachImage: {fileID: 1788000036569945561}
-  SummonImage: {fileID: 6217374209099174594}
 --- !u!114 &803500727148360872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -908,118 +916,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   publisher: {fileID: 11400000, guid: 4c04006dc5b64634095cc730129a4a57, type: 2}
---- !u!114 &7821440480901068321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8944396081258672361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d67c870696e604e92e17f2f06b7f05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1739984631101066046}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: DisableSlimeThachSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  publisher: {fileID: 11400000, guid: 796bebcaea11f9a4a9e85a9d758c8f3c, type: 2}
---- !u!114 &6554637518309608200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8944396081258672361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d67c870696e604e92e17f2f06b7f05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1739984631101066046}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: DisableSummonSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  publisher: {fileID: 11400000, guid: 295f7d0b8ff55474aa4f577f31ba10bb, type: 2}
---- !u!114 &1161376814890794761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8944396081258672361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d67c870696e604e92e17f2f06b7f05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1739984631101066046}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: EnableSlimeThachSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  publisher: {fileID: 11400000, guid: 1b0a8d553edbeb1459bb0f1308d2743d, type: 2}
---- !u!114 &4664905209441762102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8944396081258672361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d67c870696e604e92e17f2f06b7f05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1739984631101066046}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: EnableSummonSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  publisher: {fileID: 11400000, guid: 85fecb114b64f5e4e96bcd7199c90a6c, type: 2}
 --- !u!1 &9125986794551992237
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +927,7 @@ GameObject:
   - component: {fileID: 7949227176302779311}
   - component: {fileID: 5522825317603207763}
   - component: {fileID: 1788000036569945561}
+  - component: {fileID: 2437323767349760203}
   m_Layer: 5
   m_Name: SlimeThach
   m_TagString: Untagged
@@ -1095,3 +992,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2437323767349760203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9125986794551992237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecff2e9910a4eed46aeebce541a30fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 11400000, guid: f5e1cdea9756a78479ada054f29c1c7c, type: 2}

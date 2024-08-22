@@ -11,7 +11,8 @@ public class PlayerSkillManager : MonoBehaviour
     public List<Skill> skillList; //All skills stored here
     public SkillActivator activator;
 
-  
+    
+
     private void Awake()
     {
         activator = GetComponent<SkillActivator>();
@@ -35,7 +36,8 @@ public class PlayerSkillManager : MonoBehaviour
         activator.SetSkill(skill_2);
         this.gameObject.GetComponent<ShootProjectiles>().enabled = false;
     }
-
+    [SerializeField] SkillPublisherSO SetSkillEvent;    
+    
     public void SetSkills(int skill1ID, int skill2ID)
     {
         normal_skill.startAction.action.started += Action_started_normalSkill;
@@ -47,16 +49,19 @@ public class PlayerSkillManager : MonoBehaviour
         {
             skill_2.startAction.action.started -= Action_started_Skill2;
         }
+
         skill_1 = skillList.Find(skill => skill.id == skill1ID);
         skill_2 = skillList.Find(skill => skill.id == skill2ID);
         if (skill_1 != null)
         {
             skill_1.startAction.action.started += Action_started_Skill1;
+            SetSkillEvent.RaiseEvent(skill_1, 1);
             DisableSkill(skill_1);
         }
         if (skill_2 != null)
         {
             skill_2.startAction.action.started += Action_started_Skill2;
+            SetSkillEvent.RaiseEvent(skill_2, 2);
             DisableSkill(skill_2);
         }
     }
@@ -66,13 +71,21 @@ public class PlayerSkillManager : MonoBehaviour
         if (activator.crnSkill == null)
         {
             activator.SetSkill(normal_skill, false);
-            this.gameObject.GetComponent<ShootProjectiles>().enabled = true;
+            if(normal_skill.GetState() != Skill.SkillState.disabled)
+            {
+                this.gameObject.GetComponent<ShootProjectiles>().enabled = true;
+            }
+            
         }
     }
-
+    public void DisableShoot()
+    {
+        this.gameObject.GetComponent<ShootProjectiles>().enabled = false;
+    }    
     public void ReadySkill(Skill skill)
     {
         skill.SetReady();
+        
     }
 
     public void DisableSkill(Skill skill)
