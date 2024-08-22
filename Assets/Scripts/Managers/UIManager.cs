@@ -10,7 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject healthBarPanel;
     [SerializeField] private TMP_Text nextPhaseTimeText;
     [SerializeField] private TMP_Text totalTimeText;
-
+    [SerializeField] private SkillUIElement midBloodSkill;
+    [SerializeField] private SkillUIElement ultiSkill;
     private List<Image> healthBar;
     private float playerMaxHealth;
     private float goodThreshold;
@@ -22,9 +23,13 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         healthBar = new List<Image>();
-        CreateHealthBar(playerMaxHealth, goodThreshold, normalThreshold);
+        Init();
     }
 
+    void Init()
+    {
+        CreateHealthBar(playerMaxHealth, goodThreshold, normalThreshold);
+    }    
     // Update is called once per frame
     void Update()
     {
@@ -89,4 +94,19 @@ public class UIManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(totalTime % 60);
         totalTimeText.text = "Total Time " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
+    public void SetSkill(Skill skill, int pos = -1)
+    {
+        switch (pos)
+        {
+            case 1:
+                midBloodSkill.SetSkill(skill);
+                break;
+            case 2:
+                ultiSkill.SetSkill(skill);
+                break;
+        }    
+        
+        
+    }    
 }
