@@ -30,7 +30,7 @@ public class PlayerHealth : BaseHealth
         BulletManager.Instance.bulletPool.Release(bullet);
         //bullet.gameObject.SetActive(false);
         Heal(1);
-        sendCurrentHealthSO.RaiseEvent(currentHealth);
+        CheckHealth();
     }
 
     public void OnAbsorb(GameObject bullet, string tag, int id)
