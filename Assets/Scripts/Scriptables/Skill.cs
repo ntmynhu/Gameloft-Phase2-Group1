@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 public abstract class Skill : ScriptableObject
 {
     public new string name;
     public int id;
+    public Sprite skillImage;
     public InputActionReference action;
     public InputActionReference startAction;
     public InputActionReference endAction;
@@ -14,6 +18,8 @@ public abstract class Skill : ScriptableObject
     public int dmg;
     public float castTime;
 
+    [SerializeField] private FloatPublisherSO disableSkill;
+    [SerializeField] private FloatPublisherSO enableSkill;
     public enum SkillState
     {
         disabled, ready, casting, active
@@ -31,11 +37,13 @@ public abstract class Skill : ScriptableObject
     public void SetReady()
     {
         state = SkillState.ready;
+        enableSkill.RaiseEvent(id);
     }
 
     public void SetDisabled()
     {
         state = SkillState.disabled;
+        disableSkill.RaiseEvent(id);
     }
 
     public void SetCasting()

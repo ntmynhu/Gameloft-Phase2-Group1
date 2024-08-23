@@ -10,9 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject healthBarPanel;
     [SerializeField] private TMP_Text nextPhaseTimeText;
     [SerializeField] private TMP_Text totalTimeText;
-    [SerializeField] private Image slimeThachImage;
-    [SerializeField] private Image SummonImage;
-
+    [SerializeField] private SkillUIElement midBloodSkill;
+    [SerializeField] private SkillUIElement ultiSkill;
     private List<Image> healthBar;
     private float playerMaxHealth;
     private float goodThreshold;
@@ -24,9 +23,13 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         healthBar = new List<Image>();
-        CreateHealthBar(playerMaxHealth, goodThreshold, normalThreshold);
+        Init();
     }
 
+    void Init()
+    {
+        CreateHealthBar(playerMaxHealth, goodThreshold, normalThreshold);
+    }    
     // Update is called once per frame
     void Update()
     {
@@ -92,30 +95,18 @@ public class UIManager : MonoBehaviour
         totalTimeText.text = "Total Time " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    public void DisableSlimeThachSkill()
+    public void SetSkill(Skill skill, int pos = -1)
     {
-        Color color = slimeThachImage.color;
-        color.a = 0.5f;
-        slimeThachImage.color = color;
-    }
-    public void EnableSlimeThachSkill()
-    {
-        Color color = slimeThachImage.color;
-        color.a = 1f;
-        slimeThachImage.color = color;
-    }
-
-    public void DisableSummonSkill()
-    {
-        Color color = SummonImage.color;
-        color.a = 0.5f;
-        SummonImage.color = color;
-    }
-
-    public void EnableSummonSkill()
-    {
-        Color color = SummonImage.color;
-        color.a = 1f;
-        SummonImage.color = color;
-    }
+        switch (pos)
+        {
+            case 1:
+                midBloodSkill.SetSkill(skill);
+                break;
+            case 2:
+                ultiSkill.SetSkill(skill);
+                break;
+        }    
+        
+        
+    }    
 }
