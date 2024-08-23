@@ -56,9 +56,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   activeEnemies: []
-  defaultTime: 10
+  defaultTime: 15
   spawnRate: 3
+  shiftedValue: 0
+  PlayerRef: {fileID: 0}
+  sendElapsedPhaseTimeSO: {fileID: 11400000, guid: 4c04006dc5b64634095cc730129a4a57, type: 2}

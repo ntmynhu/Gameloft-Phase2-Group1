@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BaseEnemy :MonoBehaviour
 {
-    [SerializeField]
-    GameObject Player;
+    public Transform Player;
+    private NavMeshAgent agent;
     enum EnemyState
     {
         Chasing,
@@ -28,12 +29,11 @@ public class BaseEnemy :MonoBehaviour
     public virtual void Attack() { }
     public virtual void Move(Vector2 direction)
     {
-        direction.Normalize();
-        myRB.velocity = speed * direction;
+        // should remove this func
     }
-    public virtual void Move(GameObject target)
+    public virtual void Move(Transform target)
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        agent.SetDestination(target.position);
     }
     public virtual void TakeDamage(int ammount)
     {
@@ -46,20 +46,24 @@ public class BaseEnemy :MonoBehaviour
     private void Start()
     {
         currentHP = maxHP;
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
     private void Update()
     {
-        switch (CurrentState)
-        {
-            case (EnemyState.Chasing):
+       // switch (CurrentState)
+       // {
+           // case (EnemyState.Chasing):
                 //Move(Player);
-                break;
-            case (EnemyState.Attacking):
+               // break;
+            //case (EnemyState.Attacking):
                 //Attacking
-                break;
-        }
-        if (IsPlayerInRange()) CurrentState = EnemyState.Attacking;
-        else CurrentState = EnemyState.Chasing;
+              //  break;
+       // }
+       // if (IsPlayerInRange()) CurrentState = EnemyState.Attacking;
+       // else 
+      //  CurrentState = EnemyState.Chasing;
 
     }
     private bool IsPlayerInRange()
