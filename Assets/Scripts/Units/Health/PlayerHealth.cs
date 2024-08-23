@@ -44,6 +44,10 @@ public class PlayerHealth : BaseHealth
     public override void TakeDmg(float dmg)
     {
         base.TakeDmg(dmg);
+        CheckHealth();
+    }
+    private void CheckHealth()
+    {
         if (currentHealth >= goodThreshold)
         {
             ChangeState(SlimeState.Good);
@@ -74,19 +78,23 @@ public class PlayerHealth : BaseHealth
         {
             // process good state changes
             //PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_1);
+            currentState = SlimeState.Good;
             GoodState.RaiseEvent();
         }
         else if (state == SlimeState.Normal)
         {
             // process normal state changes
             //PlayerSkillManager.Instance.ReadySkill(PlayerSkillManager.Instance.skill_1);
+            currentState = SlimeState.Normal;
             NormalState.RaiseEvent();
         }
         else
         {
             // process bad state changes
             //PlayerSkillManager.Instance.DisableSkill(PlayerSkillManager.Instance.skill_1);
+            currentState = SlimeState.Bad;
             BadState.RaiseEvent();
         }
     }
+
 }
