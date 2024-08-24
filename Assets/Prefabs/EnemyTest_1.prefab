@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04fea95c3f8f1245a99381fda9f8108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 1
-  maxHealth: 1
+  currentHealth: 2
+  maxHealth: 2
   onDie: {fileID: 11400000, guid: 3ba44581556f4194289fc03475e83e46, type: 2}
   bloodSprite: {fileID: 5600648124943562919}
