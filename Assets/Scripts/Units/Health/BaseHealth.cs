@@ -6,7 +6,7 @@ public class BaseHealth : MonoBehaviour
 {
     [SerializeField] protected float currentHealth;
     [SerializeField] protected float maxHealth;
-    [SerializeField] protected VoidPublisherSO onDie;
+    [SerializeField] protected StringPublisherSO onDie;
     public virtual void TakeDmg(float dmg)
     {
         currentHealth -= dmg;
@@ -30,9 +30,9 @@ public class BaseHealth : MonoBehaviour
         currentHealth += hp;
     }
 
-    public void Die()
+    public virtual void Die()
     {
-        onDie.RaiseEvent();
+        onDie.RaiseEvent(this.gameObject.GetInstanceID().ToString());
         // Destroy or disable player..
     }
 }

@@ -8,7 +8,7 @@ public class GameObjectPublisherSO : ScriptableObject
 {
     public UnityAction<GameObject, string, int> OnEventRaised;
 
-    public void RaiseEvent(GameObject obj, string tag, int name)
+    public void RaiseEvent(GameObject obj, string tag="", int name=-1)
     {
         OnEventRaised?.Invoke(obj, tag, name);
     }

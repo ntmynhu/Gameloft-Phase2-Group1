@@ -148,6 +148,13 @@ public class EnemyManager : MonoBehaviour
             enemyTypes[enemyTypes.Count - 2].chance = 50f;
         }
     }
+    public void ReleaseEnemy(string InstanceID)
+    {
+        BaseEnemy activeEnemy = activeEnemies.Find(e => e.gameObject.GetInstanceID().ToString() == InstanceID);
+        Enemy enemy = enemyTypes.Find(e => e.gameObject.name == activeEnemy.gameObject.name);
+        enemy.pool.Release(activeEnemy);
+        activeEnemies.Remove(activeEnemy);
+    }
 
     private void ClearEnemy()
     {
