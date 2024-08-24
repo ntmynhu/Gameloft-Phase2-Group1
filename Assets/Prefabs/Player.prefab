@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 7026767218970351030}
   - component: {fileID: 6656356739649810725}
   - component: {fileID: 6116992680394008736}
+  - component: {fileID: 6011928824967329842}
   m_Layer: 0
   m_Name: Player
   m_TagString: Allie
@@ -681,7 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 10
   maxHealth: 10
-  onDie: {fileID: 11400000, guid: d62c59cc210dd084fa7b86fd0bdca759, type: 2}
+  onDie: {fileID: 0}
   goodThreshold: 6
   normalThreshold: 2
   sendGoodThresholdSO: {fileID: 11400000, guid: c8db84244c1421444b5440c040b58acd, type: 2}
@@ -969,6 +970,34 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   publisher: {fileID: 11400000, guid: e1e46047c739bd248a644429cdaa8325, type: 2}
+--- !u!114 &6011928824967329842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3310721262014036270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e747c2cfc6f878d41b2ca059547caad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2308859863586120960}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+        m_MethodName: Sacrifice
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  publisher: {fileID: 11400000, guid: bafd692db1264704f84556ba0d7bd8cd, type: 2}
 --- !u!1 &3928311645809866873
 GameObject:
   m_ObjectHideFlags: 0

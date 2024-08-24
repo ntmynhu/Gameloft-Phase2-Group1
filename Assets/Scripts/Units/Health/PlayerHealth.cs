@@ -44,6 +44,12 @@ public class PlayerHealth : BaseHealth
     public override void TakeDmg(float dmg)
     {
         base.TakeDmg(dmg);
+        BulletManager.Instance.GetBulletToTransform(this.transform.position, 15, this.gameObject.tag, (int)dmg);
+        CheckHealth();
+    }
+    public override void Sacrifice(float dmg)
+    {
+        base.Sacrifice(dmg);
         CheckHealth();
     }
     private void CheckHealth()

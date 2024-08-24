@@ -13,7 +13,7 @@ public class NormalSkill : Skill
         if(isCasted== false)
         {
             Debug.Log("NormalSkill Activate");
-            takeDamageSO.RaiseEvent(1, "Shoot", Caster.gameObject.GetInstanceID());
+            SacrificeSO.RaiseEvent(1);
             isCasted = true;
         }
         
@@ -25,7 +25,7 @@ public class NormalSkill : Skill
         
     }
 
-    [SerializeField] private TakeDamagePublisherSO takeDamageSO;
+    [SerializeField] private FloatPublisherSO SacrificeSO;
 
 
     public override void Activate(GameObject Caster)

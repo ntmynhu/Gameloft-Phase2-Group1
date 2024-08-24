@@ -54,9 +54,16 @@ public class BulletManager : MonoBehaviour
         return bullet;
     }
 
-    public void GetBulletToTransform(Vector3 center, float radius, string tag, int number)
+    public void GetBulletToTransform(Vector3 center, float radius, string tag, int number, Vector2? offset = null)
     {
-        StartCoroutine(SpawnAndAnimateBullets(center, radius, tag, number));
+        Vector3 initialPosition = center;
+        if (offset != null)
+        {
+            initialPosition.y = initialPosition.y + ((Vector2) offset).y;
+            initialPosition.x = initialPosition.x + ((Vector2)offset).x;
+        } 
+            
+        StartCoroutine(SpawnAndAnimateBullets(center, tag, number, initialPosition));
     }
 
     private IEnumerator MoveBulletTowardsCenter(Bullet bullet, Vector3 center, float duration)
@@ -99,16 +106,15 @@ public class BulletManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnAndAnimateBullets(Vector3 center, float radius, string tag, int number)
+    private IEnumerator SpawnAndAnimateBullets(Vector3 center, string tag, int number, Vector2 initSpot)
     {
         
         for (int i = 0; i < number; i++)
         {
             Bullet bullet = GetBullet(tag);
-            Vector3 initialPosition = center;
-            initialPosition.y = initialPosition.y + 3;
 
-            bullet.transform.position = initialPosition;
+
+            bullet.transform.position = initSpot;
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
