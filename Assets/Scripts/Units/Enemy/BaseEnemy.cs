@@ -61,6 +61,10 @@ public class BaseEnemy :MonoBehaviour
     [SerializeField] TakeDamagePublisherSO TakeDamage;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        TakeDamage.RaiseEvent(attackDamage, this.gameObject.tag, collision.gameObject.GetInstanceID());
+       /* if (collision != null)
+        {
+            TakeDamage.RaiseEvent(attackDamage, this.gameObject.tag, collision.gameObject.GetInstanceID());
+        }    */
+        
     }
 }
