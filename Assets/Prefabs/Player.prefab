@@ -367,7 +367,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2972245441300980842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -446,6 +446,9 @@ GameObject:
   - component: {fileID: 6357743672327233795}
   - component: {fileID: 3013150761135269740}
   - component: {fileID: 932859812427654744}
+  - component: {fileID: 7026767218970351030}
+  - component: {fileID: 6656356739649810725}
+  - component: {fileID: 6116992680394008736}
   m_Layer: 0
   m_Name: Player
   m_TagString: Allie
@@ -681,6 +684,13 @@ MonoBehaviour:
   onDie: {fileID: 11400000, guid: d62c59cc210dd084fa7b86fd0bdca759, type: 2}
   goodThreshold: 6
   normalThreshold: 2
+  sendGoodThresholdSO: {fileID: 11400000, guid: c8db84244c1421444b5440c040b58acd, type: 2}
+  sendNormalThresholdSO: {fileID: 11400000, guid: 4adf27ebc898d734b9fb8b4ead435dd2, type: 2}
+  sendCurrentHealthSO: {fileID: 11400000, guid: be86fafb5da95454cb8b532b971ac9ae, type: 2}
+  sendMaxHealthSO: {fileID: 11400000, guid: 63d9bc2e6571b1c49b62ed50757913ab, type: 2}
+  GoodState: {fileID: 11400000, guid: 8995c92c4c386f64c9791c0d21f7c67e, type: 2}
+  NormalState: {fileID: 11400000, guid: 5f26d172f1f195d4a854ba2b0b693ff1, type: 2}
+  BadState: {fileID: 11400000, guid: e1e46047c739bd248a644429cdaa8325, type: 2}
 --- !u!114 &1072115732786670507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,6 +780,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 854717128fa97ed46a0b55023232aa95, type: 2}
   - {fileID: 11400000, guid: f5e1cdea9756a78479ada054f29c1c7c, type: 2}
   activator: {fileID: 0}
+  SetSkillEvent: {fileID: 11400000, guid: 389ebc44497ac2c45a90d7a07689f734, type: 2}
 --- !u!114 &994568288061541010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,7 +795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crnSkill: {fileID: 0}
   aimRenderer: {fileID: 6357743672327233795}
-  activatorState: 0
+  swapOut: 1
 --- !u!114 &6357743672327233795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,6 +849,126 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7026767218970351030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3310721262014036270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d67c870696e604e92e17f2f06b7f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3115143540808849643}
+        m_TargetAssemblyTypeName: PlayerSkillManager, Assembly-CSharp
+        m_MethodName: DisableSkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: f5e1cdea9756a78479ada054f29c1c7c, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Skill, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3115143540808849643}
+        m_TargetAssemblyTypeName: PlayerSkillManager, Assembly-CSharp
+        m_MethodName: DisableSkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 854717128fa97ed46a0b55023232aa95, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Skill, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  publisher: {fileID: 11400000, guid: 8995c92c4c386f64c9791c0d21f7c67e, type: 2}
+--- !u!114 &6656356739649810725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3310721262014036270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d67c870696e604e92e17f2f06b7f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3115143540808849643}
+        m_TargetAssemblyTypeName: PlayerSkillManager, Assembly-CSharp
+        m_MethodName: ReadySkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: f5e1cdea9756a78479ada054f29c1c7c, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Skill, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3115143540808849643}
+        m_TargetAssemblyTypeName: PlayerSkillManager, Assembly-CSharp
+        m_MethodName: DisableSkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 854717128fa97ed46a0b55023232aa95, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Skill, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  publisher: {fileID: 11400000, guid: 5f26d172f1f195d4a854ba2b0b693ff1, type: 2}
+--- !u!114 &6116992680394008736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3310721262014036270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d67c870696e604e92e17f2f06b7f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3115143540808849643}
+        m_TargetAssemblyTypeName: PlayerSkillManager, Assembly-CSharp
+        m_MethodName: DisableSkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: f5e1cdea9756a78479ada054f29c1c7c, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Skill, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3115143540808849643}
+        m_TargetAssemblyTypeName: PlayerSkillManager, Assembly-CSharp
+        m_MethodName: ReadySkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 854717128fa97ed46a0b55023232aa95, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Skill, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  publisher: {fileID: 11400000, guid: e1e46047c739bd248a644429cdaa8325, type: 2}
 --- !u!1 &3928311645809866873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,7 +1314,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5987489408069891512}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1205,7 +1336,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1408,7 +1539,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7811875647202551938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

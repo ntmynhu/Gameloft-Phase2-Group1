@@ -353,8 +353,6 @@ BoxCollider2D:
 --- !u!95 &2753583886462884442
 Animator:
   serializedVersion: 5
---- !u!195 &6193819452499180966
-NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -373,6 +371,14 @@ NavMeshAgent:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &6193819452499180966
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896908221873568400}
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
   m_Speed: 3.5

@@ -64,20 +64,64 @@ public class SlimeThachSkill : Skill
         SetDisabled(); //Disable the skill on complete
     }
 
-    float crnHealth;
+    public float crnHealth;
     public override void Cast(GameObject Caster)
     {
         //Moving the aim Circle
-        isCasted = true;
-        if (state == SkillState.ready)
+        
+        if (isCasted == true)
         {
             
             crnHealth = Caster.GetComponent<PlayerHealth>().GetHealth();
             radius = (crnHealth - remainingHealth) * radiusMultipler;
+            isCasted = false;
 
         }
         aimPos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
+
+    }
+
+    public override void NextStage(string actionName, string actionState)
+    {
+        if (actionName == startAction.action.name)
+        {
+            switch (actionState)
+            {
+                case "Start":
+                    SetCasting();
+                    break;
+            }
+        }
+        else if (actionName == endAction.action.name)
+        {
+            switch (actionState)
+            {
+                case "Perform":
+                    SetActive();
+                    
+                    break;
+            }
+        }
+    }
+
+    public override void PerformCurrentAction(GameObject player = null, AimRenderer aimRenderer = null)
+    {
+        switch (state)
+        {
+            case SkillState.ready:
+            case SkillState.disabled:
+                aimRenderer.DisableAll();
+                break;
+            case SkillState.casting:
+                Cast(player);
+                UpdateAimSprite(aimRenderer);
+                break;
+            case SkillState.active:
+                Activate(player);
+                isCasted = true;
+                break;
+        }
     }
 
 }
