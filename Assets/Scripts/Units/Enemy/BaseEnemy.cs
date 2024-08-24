@@ -58,4 +58,9 @@ public class BaseEnemy :MonoBehaviour
     {
         return (Vector2.Distance(Player.transform.position, transform.position) < attackRange);
     }
+    [SerializeField] TakeDamagePublisherSO TakeDamage;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        TakeDamage.RaiseEvent(attackDamage, this.gameObject.tag, collision.gameObject.GetInstanceID());
+    }
 }
