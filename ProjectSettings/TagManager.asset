@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Allie
+  - PlayerContainer
   layers:
   - Default
   - TransparentFX
