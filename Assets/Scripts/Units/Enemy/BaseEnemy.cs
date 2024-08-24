@@ -8,6 +8,7 @@ public class BaseEnemy :MonoBehaviour
 {
     public Transform Player;
     private NavMeshAgent agent;
+    public Animator animator;
     enum EnemyState
     {
         Chasing,
@@ -17,19 +18,21 @@ public class BaseEnemy :MonoBehaviour
     [SerializeField]
     Rigidbody2D myRB;
     [SerializeField]
-    private float speed = 5f;
-    [SerializeField]
-    private float attackRange = 10f;
+    private float attackRange = 1f;
     [SerializeField]
     private int attackDamage = 1;
     [SerializeField]
-    public virtual void Attack() { }
+    public virtual void Attack(Transform target) {
+        agent.SetDestination(target.position);
+        animator.SetTrigger("attack");
+    }
     public virtual void Move(Vector2 direction)
     {
         // should remove this func
     }
     public virtual void Move(Transform target)
     {
+        animator.SetBool("isMoving", true);
         agent.SetDestination(target.position);
     }
     private void Start()
@@ -40,23 +43,22 @@ public class BaseEnemy :MonoBehaviour
     }
     private void Update()
     {
-       // switch (CurrentState)
-       // {
-           // case (EnemyState.Chasing):
+       switch (CurrentState)
+       {
+           case (EnemyState.Chasing):
                 Move(Player);
-               // break;
-            //case (EnemyState.Attacking):
-                //Attacking
-              //  break;
-       // }
-       // if (IsPlayerInRange()) CurrentState = EnemyState.Attacking;
-       // else 
-      //  CurrentState = EnemyState.Chasing;
+               break;
+            case (EnemyState.Attacking):
+                Attack(Player);
+               break;
+       }
+       if (IsPlayerInRange()) CurrentState = EnemyState.Attacking;
+       else CurrentState = EnemyState.Chasing;
 
     }
     private bool IsPlayerInRange()
     {
-        return (Vector2.Distance(Player.transform.position, transform.position) < attackRange);
+        return (Vector2.Distance(Player.position, transform.position) < attackRange);
     }
     [SerializeField] TakeDamagePublisherSO TakeDamage;
     private void OnCollisionEnter2D(Collision2D collision)

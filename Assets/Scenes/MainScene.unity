@@ -1191,6 +1191,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2308859863586120960, guid: 5d786861b99782d49a52cb1e1c3ebb45, type: 3}
+      propertyPath: onDie
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ba44581556f4194289fc03475e83e46, type: 2}
     - target: {fileID: 3310721262014036270, guid: 5d786861b99782d49a52cb1e1c3ebb45, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1322,6 +1326,10 @@ PrefabInstance:
     - target: {fileID: -6310606785541511952, guid: 7775a4f16e655fb4984c252e82409de2, type: 3}
       propertyPath: defaultTime
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -6310606785541511952, guid: 7775a4f16e655fb4984c252e82409de2, type: 3}
+      propertyPath: enemyTypes.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6310606785541511952, guid: 7775a4f16e655fb4984c252e82409de2, type: 3}
       propertyPath: spawnPoints.Array.data[0]

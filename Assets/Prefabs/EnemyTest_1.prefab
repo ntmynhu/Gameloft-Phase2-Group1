@@ -393,9 +393,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  animator: {fileID: 2753583886462884442}
   myRB: {fileID: 1075307271375039685}
-  speed: 5
-  attackRange: 10
+  attackRange: 3
   attackDamage: 1
   TakeDamage: {fileID: 11400000, guid: ab7c196636d1e524fb1661040270b6cc, type: 2}
 --- !u!212 &5230155717478646746
