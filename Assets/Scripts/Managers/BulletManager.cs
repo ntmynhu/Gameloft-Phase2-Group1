@@ -11,7 +11,7 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private bool collectionCheck;
 
     //Singleton
-    public static BulletManager Instance { get; set; } 
+    public static BulletManager Instance { get; set; }
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -59,10 +59,10 @@ public class BulletManager : MonoBehaviour
         Vector3 initialPosition = center;
         if (offset != null)
         {
-            initialPosition.y = initialPosition.y + ((Vector2) offset).y;
+            initialPosition.y = initialPosition.y + ((Vector2)offset).y;
             initialPosition.x = initialPosition.x + ((Vector2)offset).x;
-        } 
-            
+        }
+
         StartCoroutine(SpawnAndAnimateBullets(center, tag, number, initialPosition));
     }
 
@@ -98,17 +98,20 @@ public class BulletManager : MonoBehaviour
             // Apply a spread effect
             rb.velocity = direction * Random.Range(3, 10);
 
+            yield return new WaitForSeconds(0.02f);
+            bullet.GetComponent<Collider2D>().isTrigger = false;
             // Wait for a short duration before stopping the bullet
             yield return new WaitForSeconds(0.5f);
 
             // Stop the bullet by setting its velocity to zero
             rb.velocity = Vector2.zero;
+            
         }
     }
 
     private IEnumerator SpawnAndAnimateBullets(Vector3 center, string tag, int number, Vector2 initSpot)
     {
-        
+
         for (int i = 0; i < number; i++)
         {
             Bullet bullet = GetBullet(tag);
@@ -116,6 +119,7 @@ public class BulletManager : MonoBehaviour
 
             bullet.transform.position = initSpot;
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            bullet.GetComponent<Collider2D>().isTrigger = true;
             if (rb != null)
             {
                 // Move bullets towards the center

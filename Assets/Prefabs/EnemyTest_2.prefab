@@ -225,6 +225,7 @@ MonoBehaviour:
   speed: 5
   attackRange: 10
   attackDamage: 1
+  TakeDamage: {fileID: 11400000, guid: ab7c196636d1e524fb1661040270b6cc, type: 2}
 --- !u!212 &6636474807269444032
 SpriteRenderer:
   m_ObjectHideFlags: 0
