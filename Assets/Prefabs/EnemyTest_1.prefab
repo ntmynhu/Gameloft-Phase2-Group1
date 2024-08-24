@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 6193819452499180966}
   - component: {fileID: 42876642933064673}
   - component: {fileID: -8473486126870456533}
+  - component: {fileID: 5714837570561710239}
   m_Layer: 7
   m_Name: EnemyTest_1
   m_TagString: Enemy
@@ -607,3 +608,16 @@ MonoBehaviour:
   maxHealth: 2
   onDie: {fileID: 11400000, guid: 3ba44581556f4194289fc03475e83e46, type: 2}
   bloodSprite: {fileID: 5600648124943562919}
+--- !u!114 &5714837570561710239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896908221873568400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8b43f4696d70c459e7466628a67747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: 0.1

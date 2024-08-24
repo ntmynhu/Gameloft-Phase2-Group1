@@ -66,7 +66,7 @@ public class PlayerAnimation : MonoBehaviour
         }
 
         isMoving = smoothedSpeed > threshold;
-        playerAnim.SetBool("isMoving", isMoving);
+        playerAnim.SetBool(IS_MOVING, isMoving);
     }
 
     private void HandlePlayerFacing()
