@@ -23,9 +23,6 @@ public class BaseEnemy :MonoBehaviour
     [SerializeField]
     private int attackDamage = 1;
     [SerializeField]
-    private int currentHP;
-    [SerializeField]
-    private int maxHP = 100;
     public virtual void Attack() { }
     public virtual void Move(Vector2 direction)
     {
@@ -35,17 +32,8 @@ public class BaseEnemy :MonoBehaviour
     {
         agent.SetDestination(target.position);
     }
-    public virtual void TakeDamage(int ammount)
-    {
-        currentHP -= ammount;
-        if (currentHP <= 0)
-        {
-            Die();
-        }
-    }
     private void Start()
     {
-        currentHP = maxHP;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -55,7 +43,7 @@ public class BaseEnemy :MonoBehaviour
        // switch (CurrentState)
        // {
            // case (EnemyState.Chasing):
-                //Move(Player);
+                Move(Player);
                // break;
             //case (EnemyState.Attacking):
                 //Attacking
@@ -70,5 +58,4 @@ public class BaseEnemy :MonoBehaviour
     {
         return (Vector2.Distance(Player.transform.position, transform.position) < attackRange);
     }
-    public void Die() { this.gameObject.SetActive(false); }
 }

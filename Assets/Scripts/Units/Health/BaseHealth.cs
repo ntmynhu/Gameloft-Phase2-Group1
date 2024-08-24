@@ -30,7 +30,7 @@ public class BaseHealth : MonoBehaviour
         currentHealth += hp;
     }
 
-    public void Die()
+    public virtual void Die()
     {
         onDie.RaiseEvent();
         // Destroy or disable player..
