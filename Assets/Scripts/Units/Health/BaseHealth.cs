@@ -12,9 +12,9 @@ public class BaseHealth : MonoBehaviour
         currentHealth -= dmg;
     }
 
-    public virtual void Sacrifice(float remaining)
+    public virtual void Sacrifice(float dmg)
     {
-        currentHealth = remaining;
+        currentHealth -= dmg;
     }
 
     public virtual void OnGetDamaged(float damage, string tag, int id)

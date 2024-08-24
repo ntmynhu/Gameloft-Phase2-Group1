@@ -24,11 +24,12 @@ MonoBehaviour:
   disableSkill: {fileID: 11400000, guid: f82742d2bcdd7bb488692b25a33a94c7, type: 2}
   enableSkill: {fileID: 11400000, guid: bd3ec843898f42946aaa35ff8ee996c4, type: 2}
   state: 0
-  radius: 2
+  radius: 1.5
   radiusMultipler: 0.5
-  aimPos: {x: -1.480411, y: 1.4814818, z: 0}
+  aimPos: {x: 6.5073624, y: 3.6448677, z: 0}
   aimSpeed: 0
   skillAimSprite: {fileID: 21300000, guid: c9518a3d6b3de554a8f2bd3a4a2b9917, type: 3}
   remainingHealth: 1
   takeDamageSO: {fileID: 11400000, guid: ab7c196636d1e524fb1661040270b6cc, type: 2}
-  crnHealth: 5
+  sacrificeSO: {fileID: 11400000, guid: bafd692db1264704f84556ba0d7bd8cd, type: 2}
+  crnHealth: 4

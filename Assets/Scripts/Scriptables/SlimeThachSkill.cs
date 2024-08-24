@@ -34,6 +34,7 @@ public class SlimeThachSkill : Skill
 
 
     [SerializeField] private TakeDamagePublisherSO takeDamageSO;
+    [SerializeField] private FloatPublisherSO sacrificeSO;
     public override void Activate(GameObject Caster)
     {
         //Use CircleCast to know if any object is within the skill range
@@ -59,8 +60,8 @@ public class SlimeThachSkill : Skill
         }
 
         //Change Character Health
-        takeDamageSO.RaiseEvent(crnHealth-remainingHealth, "Slime Thach", Caster.gameObject.GetInstanceID());
-        BulletManager.Instance.GetBulletToTransform(aimPos, radius, Caster.tag, (int)crnHealth - remainingHealth);
+        sacrificeSO.RaiseEvent(crnHealth-remainingHealth);
+        BulletManager.Instance.GetBulletToTransform(aimPos, radius, Caster.tag, (int)crnHealth - remainingHealth, new Vector2(0,3));
         SetDisabled(); //Disable the skill on complete
     }
 
