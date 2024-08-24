@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371886825656388985}
   - component: {fileID: -6310606785541511952}
+  - component: {fileID: 5608519841815731758}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -57,8 +58,36 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   activeEnemies: []
-  defaultTime: 15
+  defaultTime: 50
   spawnRate: 3
   shiftedValue: 0
   PlayerRef: {fileID: 0}
   sendElapsedPhaseTimeSO: {fileID: 11400000, guid: 4c04006dc5b64634095cc730129a4a57, type: 2}
+--- !u!114 &5608519841815731758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833877381285662402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b039cce586f3d6a4794841f01111eb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -6310606785541511952}
+        m_TargetAssemblyTypeName: EnemyManager, Assembly-CSharp
+        m_MethodName: ReleaseEnemy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  publisher: {fileID: 11400000, guid: 3ba44581556f4194289fc03475e83e46, type: 2}
